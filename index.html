@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHATSAPP SPY - A Chave que Desbloqueia o Apagado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Cursor personalizado */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #9333ea;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+            mix-blend-mode: difference;
+        }
+
+        /* Animação de digitação */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid #9333ea;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0033 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(45deg, #9333ea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #888;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .mystery-section {
+            background: rgba(147, 51, 234, 0.05);
+            border-left: 3px solid #9333ea;
+            margin: 40px 0;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mystery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.2), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Imagens estratégicas */
+        .whatsapp-preview {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .message-bubble {
+            background: #075e54;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .deleted-message {
+            background: #3a3a3a;
+            color: #666;
+            font-style: italic;
+            text-decoration: line-through;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animação de áudio */
+        .audio-pulse {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            background: #25d366;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .audio-pulse::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(37, 211, 102, 0.5);
+            animation: audioWave 1.5s infinite;
+        }
+
+        @keyframes audioWave {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+        }
+
+        /* Botão explosivo */
+        .acquire-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            font-size: 1.5em;
+            background: linear-gradient(45deg, #9333ea, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
+            animation: explode 2s infinite;
+            margin: 40px auto;
+            display: block;
+            width: fit-content;
+        }
+
+        @keyframes explode {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(147, 51, 234, 0.8); }
+        }
+
+        .acquire-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(147, 51, 234, 0.8);
+        }
+
+        .acquire-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .acquire-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Partículas caindo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #9333ea;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Oferta section */
+        .offer-section {
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(147, 51, 234, 0.2) 0%, transparent 70%);
+            padding: 60px 20px;
+            margin: 40px auto;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .offer-text {
+            font-size: 2em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #9333ea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-hint {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: none; }
+            10% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+            20% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+            30% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+            40% { text-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <h1 class="glitch">WHATSAPP SPY</h1>
+        <p class="subtitle">A chave que desbloqueia o apagado</p>
+    </header>
+
+    <section>
+        <div class="mystery-section">
+            <h2>Você sentiu.</h2>
+            <p>Aquela mensagem sumiu antes dos seus olhos.</p>
+            <p>Você viu o "apagado"... mas nunca soube o que dizia.</p>
+            <p class="typing-effect">Até hoje.</p>
+        </div>
+
+        <div class="whatsapp-preview">
+            <div class="message-bubble">
+                Oi amor, você já foi embora?
+            </div>
+            <div class="message-bubble deleted-message">
+                [Mensagem apagada]
+            </div>
+            <div class="message-bubble">
+                Por que apagou?
+            </div>
+        </div>
+
+        <div class="mystery-section">
+            <h2>O que ela escreveu antes de deletar?</h2>
+            <p style="color: #ff0040; font-size: 2em; text-align: center; margin: 20px 0;">"Tudo."</p>
+        </div>
+    </section>
+
+<section class="offer-section">
+    <h2 class="offer-text">ENTRADA PARA O INVISÍVEL</h2>
+    <p class="price-hint">Preço que cabe no bolso até de quem não tem.</p>
+    <p style="color: #888;">Um café por dia por 7 dias.</p>
+    <p style="color: #888; margin-top: 10px;">Depois, silêncio absoluto.</p>
+    
+    <div class="audio-pulse"></div>
+    <p style="color: #666; font-size: 0.9em;">Escute o que ele não te mandou.</p>
+    
+    <a href="#" class="acquire-btn">🔓 ADQUIRIR MINHA FERRAMENTA</a>
+</section>
+
+    <footer>
+        <p>"Quem olha de fora, vê só tela. Quem olha de dentro, vê alma."</p>
+    </footer>
+
+    <script>
+        // Cursor personalizado
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // Criar partículas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = Math.random() * 3 + 2 + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Animação de digitação
+        const typingElements = document.querySelectorAll('.typing-effect');
+        typingElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                }
+            };
+            type();
+        });
+
+        // Efeito de hover no botão
+        const btn = document.querySelector('.acquire-btn');
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'scale(1.1)';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'scale(1)';
+        });
+
+        // Animação de scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
