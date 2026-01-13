@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WHATSAPP SPY - A Chave que Desbloqueia o Apagado</title>
+    <title>WHATSAPP SPY v2.0 - Tudo. Literalmente Tudo.</title>
     <style>
         * {
             margin: 0;
@@ -12,432 +12,415 @@
         }
 
         body {
-            background: #0a0a0a;
-            color: #fff;
+            background: #000;
+            color: #00ff41;
             font-family: 'Courier New', monospace;
             overflow-x: hidden;
-            cursor: none;
+            cursor: crosshair;
         }
 
-        /* Cursor personalizado */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #9333ea;
-            border-radius: 50%;
+        /* Matrix rain effect */
+        canvas {
             position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s;
-            mix-blend-mode: difference;
-        }
-
-        /* Animação de digitação */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent }
-        }
-
-        .typing-effect {
-            overflow: hidden;
-            border-right: 3px solid #9333ea;
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
 
         /* Header */
         header {
             text-align: center;
             padding: 50px 20px;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a0033 100%);
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid #00ff41;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 20px #00ff41;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Floating elements */
+        .floating-element {
+            flutuando: 0; /* propriedade inventada */
+            position: fixed;
+            color: #00ff41;
+            font-size: 12px;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh) rotate(0deg); }
+            to { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Live feed simulation */
+        .live-feed {
+            background: #0a0a0a;
+            border: 1px solid #00ff41;
+            padding: 20px;
+            height: 300px;
+            overflow-y: scroll;
+            font-size: 12px;
+            margin: 20px 0;
+        }
+
+        .feed-item {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 2px solid #00ff41;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Feature boxes */
+        .feature-box {
+            border: 1px solid #00ff41;
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(0, 255, 65, 0.05);
             position: relative;
             overflow: hidden;
         }
 
-        header::before {
+        .feature-box::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        h1 {
-            font-size: 4em;
-            background: linear-gradient(45deg, #9333ea, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: #888;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Seções */
-        section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .mystery-section {
-            background: rgba(147, 51, 234, 0.05);
-            border-left: 3px solid #9333ea;
-            margin: 40px 0;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mystery-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.2), transparent);
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
             animation: scan 3s infinite;
         }
 
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Imagens estratégicas */
-        .whatsapp-preview {
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 20px;
+        /* Data visualization */
+        .data-viz {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin: 30px 0;
-            position: relative;
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
         }
 
-        .message-bubble {
-            background: #075e54;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            position: relative;
-            animation: fadeIn 1s ease-in;
+        .data-card {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            padding: 20px;
+            text-align: center;
         }
 
-        .deleted-message {
-            background: #3a3a3a;
-            color: #666;
-            font-style: italic;
-            text-decoration: line-through;
-            animation: glitch 2s infinite;
+        .data-number {
+            font-size: 2em;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
         }
 
-        @keyframes glitch {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Animação de áudio */
-        .audio-pulse {
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            background: #25d366;
-            border-radius: 20px;
-            position: relative;
-            cursor: pointer;
+        /* Terminal effect */
+        .terminal {
+            background: #0a0a0a;
+            border: 1px solid #00ff41;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 14px;
             margin: 20px 0;
         }
 
-        .audio-pulse::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(37, 211, 102, 0.5);
-            animation: audioWave 1.5s infinite;
+        .terminal-line {
+            margin: 5px 0;
+            opacity: 0;
+            animation: typewriter 0.5s forwards;
         }
 
-        @keyframes audioWave {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 100px;
-                height: 100px;
-                opacity: 0;
-            }
+        @keyframes typewriter {
+            to { opacity: 1; }
         }
 
-        /* Botão explosivo */
-        .acquire-btn {
-            display: inline-block;
-            padding: 20px 60px;
+        /* CTA Button */
+        .cta-button {
+            display: block;
+            width: 300px;
+            height: 80px;
+            margin: 50px auto;
+            background: linear-gradient(45deg, #00ff41, #008f11);
+            border: none;
+            color: #000;
             font-size: 1.5em;
-            background: linear-gradient(45deg, #9333ea, #ec4899);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
-            animation: explode 2s infinite;
-            margin: 40px auto;
-            display: block;
-            width: fit-content;
         }
 
-        @keyframes explode {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(147, 51, 234, 0.8); }
-        }
-
-        .acquire-btn:hover {
+        .cta-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 50px rgba(147, 51, 234, 0.8);
+            box-shadow: 0 0 30px #00ff41;
         }
 
-        .acquire-btn::before {
-            content: '';
+        .cta-button::before {
+            content: '▶';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .acquire-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Partículas caindo */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #9333ea;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            from {
-                transform: translateY(-100vh);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-        /* Oferta section */
-        .offer-section {
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(147, 51, 234, 0.2) 0%, transparent 70%);
-            padding: 60px 20px;
-            margin: 40px auto;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .offer-text {
+            left: 20px;
             font-size: 2em;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #9333ea, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-hint {
-            font-size: 1.2em;
-            color: #888;
-            margin-bottom: 30px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-            font-size: 0.9em;
-            border-top: 1px solid #333;
-            margin-top: 60px;
+            animation: blink 1s infinite;
         }
 
         /* Glitch effect */
         .glitch {
             position: relative;
-            animation: glitch 3s infinite;
+            animation: glitch 2s infinite;
         }
 
         @keyframes glitch {
             0%, 100% { text-shadow: none; }
-            10% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-            20% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
-            30% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-            40% { text-shadow: none; }
+            10% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
+            20% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; }
         }
     </style>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="particles" id="particles"></div>
+    <canvas id="matrix"></canvas>
+
+    <!-- Floating elements -->
+    <div class="floating-element" style="left: 10%; animation-delay: 0s;">[MENSAGEM LIDA 23:47]</div>
+    <div class="floating-element" style="left: 30%; animation-delay: 5s;">[FOTO BAIXADA]</div>
+    <div class="floating-element" style="left: 50%; animation-delay: 10s;">[ÁUDIO REPRODUZIDO]</div>
+    <div class="floating-element" style="left: 70%; animation-delay: 15s;">[LOCALIZAÇÃO ACESSADA]</div>
+    <div class="floating-element" style="left: 90%; animation-delay: 8s;">[CONTATO ONLINE]</div>
 
     <header>
-        <h1 class="glitch">WHATSAPP SPY</h1>
-        <p class="subtitle">A chave que desbloqueia o apagado</p>
+        <h1 class="glitch">WHATSAPP SPY v2.0</h1>
+        <p>Tudo. Literalmente Tudo. Em tempo real.</p>
     </header>
 
     <section>
-        <div class="mystery-section">
-            <h2>Você sentiu.</h2>
-            <p>Aquela mensagem sumiu antes dos seus olhos.</p>
-            <p>Você viu o "apagado"... mas nunca soube o que dizia.</p>
-            <p class="typing-effect">Até hoje.</p>
-        </div>
-
-        <div class="whatsapp-preview">
-            <div class="message-bubble">
-                Oi amor, você já foi embora?
+        <h2>🔴 FEED AO VIVO</h2>
+        <div class="live-feed" id="liveFeed"></div>
+        
+        <div class="data-viz">
+            <div class="data-card">
+                <div class="data-number" id="msgCount">0</div>
+                <p>Mensagens Hoje</p>
             </div>
-            <div class="message-bubble deleted-message">
-                [Mensagem apagada]
+            <div class="data-card">
+                <div class="data-number" id="delCount">0</div>
+                <p>Apagadas</p>
             </div>
-            <div class="message-bubble">
-                Por que apagou?
+            <div class="data-card">
+                <div class="data-number" id="mediaCount">0</div>
+                <p>Mídias</p>
             </div>
-        </div>
-
-        <div class="mystery-section">
-            <h2>O que ela escreveu antes de deletar?</h2>
-            <p style="color: #ff0040; font-size: 2em; text-align: center; margin: 20px 0;">"Tudo."</p>
+            <div class="data-card">
+                <div class="data-number" id="onlineTime">0</div>
+                <p>Minutos Online</p>
+            </div>
         </div>
     </section>
 
-<section class="offer-section">
-    <h2 class="offer-text">ENTRADA PARA O INVISÍVEL</h2>
-    <p class="price-hint">Preço que cabe no bolso até de quem não tem.</p>
-    <p style="color: #888;">Um café por dia por 7 dias.</p>
-    <p style="color: #888; margin-top: 10px;">Depois, silêncio absoluto.</p>
-    
-    <div class="audio-pulse"></div>
-    <p style="color: #666; font-size: 0.9em;">Escute o que ele não te mandou.</p>
-    
-    <a href="#" class="acquire-btn">🔓 ADQUIRIR MINHA FERRAMENTA</a>
-</section>
+    <section>
+        <h2>💀 O QUE VOCÊ VÊ:</h2>
+        
+        <div class="feature-box">
+            <h3>📱 TELA EM TEMPO REAL</h3>
+            <p>Vê exatamente o que ele(a) vê. Tipo espelho. Mas secreto.</p>
+            <div class="terminal">
+                <div class="terminal-line">[23:47:32] Digitando: "não posso hoje..."</div>
+                <div class="terminal-line">[23:47:35] Apagou. Digitando: "vou dormir"</div>
+                <div class="terminal-line">[23:47:38] Enviou para +55 11 9****-4321</div>
+            </div>
+        </div>
+
+        <div class="feature-box">
+            <h3>🗑️ LIXEIRA VIRTUAL</h3>
+            <p>Nada some. Nem depois de apagado. Guardamos tudo por 90 dias.</p>
+            <ul>
+                <li>✓ Mensagens deletadas em segundos</li>
+                <li>✓ Fotos apagadas da galeria</li>
+                <li>✓ Status deletados antes de 24h</li>
+                <li>✓ Áudios ouvidos e descartados</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>📍 RASTREAMENTO ABSOLUTO</h3>
+            <p>Sabe quando ele(a) sai de casa? Nós sabemos. Com foto da rua.</p>
+            <div class="terminal">
+                <div class="terminal-line">[GPS] Saindo de casa - 14:32</div>
+                <div class="terminal-line">[GPS] Chegando em: Shopping Center - 14:47</div>
+                <div class="terminal-line">[FOTO] Frente do local (clique para ampliar)</div>
+            </div>
+        </div>
+
+        <div class="feature-box">
+            <h3>🔊 MICROFONE REMOTO</h3>
+            <p>Ativa o microfone do celular. Escuta tudo. Grava. Envia pra você.</p>
+            <p style="color: #ff0040;">⚠️ Funciona mesmo com tela apagada</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>📸 CÂMRA SECRETA</h3>
+            <p>Tira foto. Sem flash. Sem som. Sem aparecer na galeria.</p>
+            <p>✓ Selfie (vê quem está do lado)</p>
+            <p>✓ Câmera traseira (vê o ambiente)</p>
+            <p>✓ Em 4K, se o celular aguentar</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎯 EM AÇÃO AGORA:</h2>
+        <div class="terminal">
+            <div class="terminal-line">[WHATSAPP SPY v2.0] Iniciando escuta...</div>
+            <div class="terminal-line">[✓] Conectado ao dispositivo remoto</div>
+            <div class="terminal-line">[✓] Bypass de criptografia concluído</div>
+            <div class="terminal-line">[✓] 3.247 mensagens capturadas</div>
+            <div class="terminal-line">[✓] 892 mídias recuperadas</div>
+            <div class="terminal-line">[✓] 47 contatos monitorados</div>
+            <div class="terminal-line" style="color: #00ff41;">[🕷️] AGUARDANDO NOVOS DADOS...</div>
+        </div>
+    </section>
+
+    <button class="cta-button" onclick="this.innerHTML='▶ INICIANDO TRANSFERÊNCIA...'">
+        ADQUIRIR ACESSO TOTAL
+    </button>
 
     <footer>
-        <p>"Quem olha de fora, vê só tela. Quem olha de dentro, vê alma."</p>
+        <p>"Se você chegou até aqui, já é meio nosso."</p>
+        <p style="font-size: 0.8em; color: #444;">Nenhum rastro. Nenhum log. Só você e a verdade.</p>
     </footer>
 
     <script>
-        // Cursor personalizado
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.querySelector('.cursor');
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-        });
-
-        // Criar partículas
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = Math.random() * 3 + 2 + 's';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            particlesContainer.appendChild(particle);
+        // Matrix rain
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~";
+        const matrixArray = matrix.split("");
+        
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
         }
-
-        // Animação de digitação
-        const typingElements = document.querySelectorAll('.typing-effect');
-        typingElements.forEach(el => {
-            const text = el.textContent;
-            el.textContent = '';
-            let i = 0;
-            const type = () => {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 100);
+        
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-            };
-            type();
-        });
-
-        // Efeito de hover no botão
-        const btn = document.querySelector('.acquire-btn');
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transform = 'scale(1.1)';
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'scale(1)';
-        });
-
-        // Animação de scroll
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                drops[i]++;
+            }
+        }
+        
+        setInterval(draw, 35);
+        
+        // Live feed simulation
+        const feedItems = [
+            "[23:47:15] Nova mensagem de +55 11 9****-1234",
+            "[23:47:18] Foto recebida [clique para ver]",
+            "[23:47:22] Status visualizado: 'festa.jpg'",
+            "[23:47:25] Digitando...",
+            "[23:47:28] Mensagem apagada [recuperada]",
+            "[23:47:32] Online",
+            "[23:47:35] Offline",
+            "[23:47:38] Localização: -23.5505, -46.6333",
+            "[23:47:42] Áudio de 45s recebido",
+            "[23:47:45] Contato +55 11 9****-5678 adicionado"
+        ];
+        
+        const liveFeed = document.getElementById('liveFeed');
+        let feedIndex = 0;
+        
+        setInterval(() => {
+            const item = document.createElement('div');
+            item.className = 'feed-item';
+            item.textContent = feedItems[feedIndex % feedItems.length];
+            item.style.animationDelay = Math.random() + 's';
+            liveFeed.appendChild(item);
+            liveFeed.scrollTop = liveFeed.scrollHeight;
+            feedIndex++;
+            
+            if(liveFeed.children.length > 20) {
+                liveFeed.removeChild(liveFeed.firstChild);
+            }
+        }, 2000);
+        
+        // Counter animation
+        function animateCounter(elementId, target, duration) {
+            const element = document.getElementById(elementId);
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if(current >= target) {
+                    current = target;
+                    clearInterval(timer);
                 }
-            });
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+        
+        // Start counters
+        setTimeout(() => {
+            animateCounter('msgCount', 847, 2000);
+            animateCounter('delCount', 234, 2000);
+            animateCounter('mediaCount', 156, 2000);
+            animateCounter('onlineTime', 367, 2000);
+        }, 1000);
+        
+        // Terminal typing effect
+        const terminalLines = document.querySelectorAll('.terminal-line');
+        terminalLines.forEach((line, index) => {
+            line.style.animationDelay = (index * 0.5) + 's';
         });
-
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
+        
+        // Button explosion effect
+        const ctaButton = document.querySelector('.cta-button');
+        ctaButton.addEventListener('click', function() {
+            this.style.background = '#ff0040';
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.background = 'linear-gradient(45deg, #00ff41, #008f11)';
+                this.style.transform = 'scale(1)';
+            }, 500);
         });
     </script>
 </body>
