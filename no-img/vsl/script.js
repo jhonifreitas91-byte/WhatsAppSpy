@@ -99,11 +99,13 @@ function startProgressBarWithVariableSpeeds({
     let lastTime = performance.now();
     const timePerPercent = totalDurationMs / 100;
 
-    let lastPct = 0;
+    let lastPct = -1;
     let lastStatusIndex = -1;
 
 function getStatusIndex(progress) {
-    return statusMessages.findIndex(i => progress >= i.from && progress < i.to);
+    return statusMessages.findIndex(i =>
+        progress >= i.from && (progress < i.to || i.to === 100)
+    );
 }
 
 function tick(now) {
