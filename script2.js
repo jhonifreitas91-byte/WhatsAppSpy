@@ -65,6 +65,14 @@ function startProgressBarWithVariableSpeeds({
         { from: 60, to: 85, speed: 1,6 },
         { from: 85, to: 100, speed: 0.9 }
     ],
+
+    onComplete: () => {
+    const btnWhats = document.querySelector(".btn-under-vsl");
+    if (btnWhats) btnWhats.style.display = "block";
+  }
+});
+
+    
     statusMessages = [
         { from: 30, to: 60, messages: [
             { text: "Analisando pacotes de dados...", icon: "📦", type: "processing" },
