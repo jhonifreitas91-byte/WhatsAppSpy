@@ -58,11 +58,12 @@ function showStageToast(type, icon, title, message) {
 // --- BARRA DE PROGRESSO CORRIGIDA ---
 function startProgressBarWithVariableSpeeds({
     rootSelector = ".progress.neon",
-    totalDurationMs = 360000,
+    totalDurationMs = 28000,
     onComplete,
     speedIntervals = [
-        { from: 0, to: 60, speed: 18.5 },
-        { from: 60, to: 100, speed: 0.41 }
+        { from: 0, to: 60, speed: 2.5 },
+        { from: 60, to: 85, speed: 1.6 }, // ✅ corrigido
+        { from: 85, to: 100, speed: 0.9 }
     ],
     statusMessages = [
         { from: 30, to: 60, messages: [
@@ -84,11 +85,9 @@ function startProgressBarWithVariableSpeeds({
         ]}
     ]
 } = {}) {
+
     const root = document.querySelector(rootSelector);
-    if (!root) {
-        console.error('Elemento da barra de progresso não encontrado:', rootSelector);
-        return;
-    }
+    if (!root) return;
 
     const bar = root.querySelector(".progress-bar");
     const texts = root.querySelectorAll(".progress-text");
@@ -96,169 +95,60 @@ function startProgressBarWithVariableSpeeds({
     const statusIcon = document.getElementById('statusIcon');
     const statusContainer = document.querySelector('.progress-status');
 
-    if (!bar) {
-        console.error('Elemento .progress-bar não encontrado');
-        return;
-    }
+    let lastPct = -1;
+let lastStatusIndex = -1;
 
-    const eventFlags = {
-        mensagens: false,
-        fotos: false,
-        imagens: false,
-        cardMsg: false,
-        cardImg: false,
-        cardLoc: false
-    };
-
-    // Inicialização corrigida - garantir que começa em 0%
-    let currentProgress = 0;
-    bar.style.width = "0%";
-    texts.forEach(t => t.textContent = "0%");
-    root.dataset.width = "0%";
-
-    let lastTime = performance.now();
-    let currentMessageIndex = 0;
-    let lastMessageTime = 0;
-    let currentInterval = null;
-    let animationId = null;
-
-    const timePerPercent = totalDurationMs / 100;
-
-    function updateStatusMessage(progress) {
-        if (progress < 30) return;
-
-        const now = performance.now();
-        const messageInterval = statusMessages.find(interval => 
-            progress >= interval.from && progress < interval.to
-        );
-
-        if (messageInterval && messageInterval !== currentInterval) {
-            currentInterval = messageInterval;
-            currentMessageIndex = 0;
-            lastMessageTime = now;
-        }
-
-        if (messageInterval && (now - lastMessageTime > 2000)) {
-            const messages = messageInterval.messages;
-            const message = messages[currentMessageIndex % messages.length];
-            
-            if(statusText) {
-                statusText.classList.add('changing');
-                setTimeout(() => statusText.classList.remove('changing'), 500);
-                statusText.textContent = message.text;
-            }
-            if(statusIcon) statusIcon.textContent = message.icon;
-            if(statusContainer) statusContainer.className = 'progress-status ' + message.type;
-            
-            currentMessageIndex++;
-            lastMessageTime = now;
-        }
-    }
-    
-    // helper para revelar o resultado de um card e esconder título/descrição
-    function revealCard(selector) {
-        const card = document.querySelector(selector);
-        if (!card) return;
-        const title = card.querySelector('.card-title');
-        const desc = card.querySelector('.card-description');
-        const result = card.querySelector('.card-result');
-
-        if (title) title.style.display = 'none';
-        if (desc) desc.style.display = 'none';
-        if (result) result.style.display = 'flex'; // ou 'block' se preferir
-    }
-
-    function checkEvents(progress) {
-        // toasts já existentes (mantidos)
-        if (progress >= 70 && !eventFlags.mensagens) {
-            showStageToast('error', '💬', 'Mensagens Suspeitas', 'Análise inicial indica padrões suspeitos.');
-            eventFlags.mensagens = true;
-        }
-        if (progress >= 85 && !eventFlags.fotos) {
-            showStageToast('warning', '🖼️', 'Fotos', 'Detecção de imagens potencialmente comprometedoras.');
-            eventFlags.fotos = true;
-        }
-        if (progress >= 90 && !eventFlags.imagens) {
-            showStageToast('error', '📸', 'Imagens', 'Arquivos de imagem ocultos foram encontrados.');
-            eventFlags.imagens = true;
-        }
-
-        // 👉 revela UM POR VEZ na ordem 70% → 85% → 90%
-        if (progress >= 70 && !eventFlags.cardMsg) {
-            revealCard('#card-msg');     // mostra resultado e esconde textos do 1º card
-            eventFlags.cardMsg = true;
-            return; // garante "um de cada vez" caso o progresso pule muito num mesmo frame
-        }
-        if (progress >= 85 && !eventFlags.cardImg) {
-            revealCard('#card-img');     // 2º card
-            eventFlags.cardImg = true;
-            return;
-        }
-        if (progress >= 90 && !eventFlags.cardLoc) {
-            revealCard('#card-loc');     // 3º card
-            eventFlags.cardLoc = true;
-            return;
-        }
-    }
-
-    function tick(now) {
-        const deltaTime = now - lastTime;
-        lastTime = now;
-
-        const currentSpeedInterval = speedIntervals.find(interval => 
-            currentProgress >= interval.from && currentProgress < interval.to
-        );
-
-        if (currentSpeedInterval) {
-            const progressIncrement = (deltaTime / timePerPercent) * currentSpeedInterval.speed;
-            currentProgress += progressIncrement;
-        }
-
-        // Garantir que não ultrapasse 100% e não fique negativo
-        currentProgress = Math.max(0, Math.min(100, currentProgress));
-
-        const pct = Math.floor(currentProgress);
-
-        // Atualizar elementos visuais
-        bar.style.width = pct + "%";
-        texts.forEach(t => t.textContent = pct + "%");
-        root.dataset.width = pct + "%";
-
-        updateStatusMessage(currentProgress);
-        checkEvents(currentProgress);
-
-        if (currentProgress < 100) {
-            animationId = requestAnimationFrame(tick);
-        } else {
-            // Garantir que termina exatamente em 100%
-            bar.style.width = "100%";
-            texts.forEach(t => t.textContent = "100%");
-            root.dataset.width = "100%";
-            
-            if (typeof onComplete === "function") {
-                onComplete();
-            }
-            setTimeout(() => {
-                if (typeof mostrarToastPreset === 'function') {
-                    mostrarToastPreset('alertaUrgente');
-                }
-            }, 1000);
-        }
-    }
-
-    // Iniciar animação
-    animationId = requestAnimationFrame(tick);
-    
-    // Retornar função para cancelar se necessário
-    return () => {
-        if (animationId) {
-            cancelAnimationFrame(animationId);
-        }
-    };
+function getStatusIndex(progress) {
+    return statusMessages.findIndex(i => progress >= i.from && progress < i.to);
 }
 
-// --- INICIALIZAÇÃO GERAL CORRIGIDA ---
+function tick(now) {
+    const delta = now - lastTime;
+    lastTime = now;
+
+    const interval = speedIntervals.find(i =>
+        currentProgress >= i.from && currentProgress < i.to
+    );
+
+    if (interval) {
+        currentProgress += (delta / timePerPercent) * interval.speed;
+    }
+
+    currentProgress = Math.min(100, currentProgress);
+    const pct = Math.floor(currentProgress);
+
+    // ✅ Atualiza SOMENTE se mudou o número
+    if (pct !== lastPct) {
+        lastPct = pct;
+        bar.style.width = pct + "%";
+        texts.forEach(t => t.textContent = pct + "%");
+
+        const statusIndex = getStatusIndex(pct);
+        if (statusIndex !== lastStatusIndex && statusIndex !== -1) {
+            lastStatusIndex = statusIndex;
+            const msgs = statusMessages[statusIndex].messages;
+            const msg = msgs[Math.floor(Math.random() * msgs.length)];
+
+            if (statusText) statusText.textContent = msg.text;
+            if (statusIcon) statusIcon.textContent = msg.icon;
+            if (statusContainer) statusContainer.className = 'progress-status ' + msg.type;
+        }
+    }
+
+    if (currentProgress < 100) {
+        requestAnimationFrame(tick);
+    } else {
+        bar.style.width = "100%";
+        texts.forEach(t => t.textContent = "100%");
+        if (typeof onComplete === "function") onComplete();
+    }
+}
+    requestAnimationFrame(tick);
+}
+
+// --- INICIALIZAÇÃO GERAL ---
 document.addEventListener("DOMContentLoaded", function () {
+
     const cta = document.getElementById("descobrir-verdade");
     if (cta) {
         cta.disabled = true;
@@ -266,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
         cta.style.cursor = "not-allowed";
     }
 
-    // Aguardar 3 segundos antes de iniciar (conforme conhecimento)
     setTimeout(() => {
         startProgressBarWithVariableSpeeds({
             onComplete: () => {
@@ -276,9 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     cta.style.cursor = "pointer";
                 }
                 const btnWhats = document.querySelector(".btn-under-vsl");
-                if (btnWhats) {
-                    btnWhats.style.display = "block";
-                }
+                if (btnWhats) btnWhats.style.display = "block";
             }
         });
     }, 3000);
