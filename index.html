@@ -1,93 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<!-- Mirrored from saibadtudo.online/app2/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 17:18:35 GMT -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>WhatsDetect - Inicio</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17836260305"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17836260305');
-</script>
-
+    <title>Quiz - Descubra seu dispositivo ideal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            background:#000;
+            color:#fff;
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:100vh;
+            padding:20px
+        }
+        .container{
+            width:100%;
+            max-width:420px;
+            text-align:center
+        }
+        .step-badge{
+            background:#25D366;
+            color:#000;
+            display:inline-block;
+            padding:6px 18px;
+            border-radius:20px;
+            font-weight:700;
+            font-size:14px;
+            margin-bottom:24px
+        }
+        h1{
+            font-size:22px;
+            margin-bottom:32px;
+            color:#fff
+        }
+        .option-btn{
+            width:100%;
+            background:#25D366;
+            border:none;
+            color:#000;
+            font-size:18px;
+            font-weight:700;
+            padding:18px;
+            border-radius:12px;
+            margin-bottom:16px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            transition:transform .15s
+        }
+        .option-btn:hover{transform:scale(1.03)}
+        .option-btn img{height:24px}
+    </style>
 </head>
 <body>
-    <style type="text/css">
-        .gratis {
-            background: #ff0000;
-            color: #fff;
-            font-family: Arial;
-            font-size: 14px;
-            padding: 0;
-            text-align: center;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }            
-        .emoji {
-            font-size: 38px;
-        }
-    </style>
-    <div class="gratis"><span class="emoji">✨ </span>VOCÊ GANHOU 1 ACESSO GRÁTIS!<span class="emoji"> ✨</span></div>
-    <header class="header">
-        <img src="assets/images/logo.webp" alt="WhatsDetect Logo" class="logo">
-    </header>
+    <div class="container">
+        <span class="step-badge">1° PASSO</span>
+        <h1>Que tipo de dispositivo você quer investigar?</h1>
 
-    <main class="main-content">
-        <div class="box">
-            <h1>Selecione quem você quer investigar:</h1>
-            <p>A pessoa não tem como saber que você está vendo as conversas dela!</p>
-            <a href="pagina27b15.html?pessoa=homem" class="btn green">
-                Quero investigar meu parceiro 
-                <span>( marido / namorado )</span>
-            </a>
-            <a href="pagina22ea4.html?pessoa=mulher" class="btn green">
-                Quero investigar minha parceira 
-                <span>( esposa / namorada )</span>
-            </a>
-        </div>
+        <button class="option-btn" onclick="escolha('iphone')">
+            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple">
+            IPHONE
+        </button>
 
-            
-    </main>
-
-    <div class="footer">
-        <div class="conteudo">        
-            <div class="centralizar">
-                <img src="assets/images/logo.webp" alt="WhatsDetect Logo" class="footer-logo">
-            </div>
-            <p>Este site não é parte do site do Google ou do Google Inc. Além disso, este site não é endossado pelo Google de nenhuma forma. Google é uma marca registrada de Google, Inc.</p>
-
-            <p>O conteúdo e as informações presentes neste site são de responsabilidade exclusiva do proprietário do domínio. Este site não é afiliado ou endossado pelo Google, Google ou qualquer outra marca mencionada. Todas as marcas registradas pertencem aos seus respectivos proprietários. Os resultados podem variar de pessoa para pessoa. As informações contidas neste site têm caráter meramente informativo e não substituem o aconselhamento de um profissional qualificado. Este site utiliza cookies para melhorar a experiência do usuário. Ao continuar navegando, você concorda com a nossa.</p>
-            <div class="centralizar">
-            <p><a href="termos/index.html">Termos de Uso</a> - <a href="privacidade/index.html">Políticas de Privacidade</a></p>
-            <p>© 2025 - WhatsDetect</p>
-        </div>
-        </div>
+        <button class="option-btn" onclick="escolha('android')">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Android">
+            ANDROID
+        </button>
     </div>
 
-<script
-  src="../../cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
-
-<!-- SEU PIXEL UTMIFY AQUI -->
-
-<!-- SEU PIXEL MCC GOOGLE AQUI -->
- 
+    <script>
+        function escolha(dispositivo){
+            localStorage.setItem('dispositivo', dispositivo);
+            // próxima tela virá aqui
+            alert("Você escolheu: " + dispositivo.toUpperCase());
+        }
+    </script>
 </body>
-
-<!-- Mirrored from saibadtudo.online/app2/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 17:18:35 GMT -->
 </html>
