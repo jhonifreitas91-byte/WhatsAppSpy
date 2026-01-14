@@ -22,7 +22,28 @@
             background:#fff;
             border-radius:20px;
             padding:32px 24px;
-            box-shadow:0 8px 24px rgba(0,0,0,.15)
+            box-shadow:0 8px 24px rgba(0,0,0,.15);
+            position:relative;
+        }
+        .back-arrow{
+            position:absolute;
+            top:20px;
+            left:20px;
+            width:40px;
+            height:40px;
+            background:#25D366;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            transition:transform .15s;
+        }
+        .back-arrow:hover{transform:scale(1.1)}
+        .back-arrow svg{
+            width:20px;
+            height:20px;
+            fill:#fff;
         }
         .step-badge{
             background:#25D366;
@@ -88,6 +109,32 @@
         }
         .page{display:none}
         .page.active{display:block}
+
+        /* Loading Progress Bar */
+        .loading-container{
+            display:none;
+            text-align:center;
+            margin-top:30px;
+        }
+        .loading-bar{
+            width:100%;
+            height:8px;
+            background:#e0e0e0;
+            border-radius:4px;
+            overflow:hidden;
+            margin:20px 0;
+        }
+        .loading-progress{
+            height:100%;
+            background:#25D366;
+            width:0%;
+            transition:width 0.2s ease;
+        }
+        .loading-text{
+            font-size:14px;
+            color:#666;
+            margin-top:10px;
+        }
     </style>
 </head>
 <body>
@@ -95,6 +142,9 @@
 
         <!-- PÁGINA 1 -->
         <div id="pag1" class="page active">
+            <div class="back-arrow" onclick="voltar()">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </div>
             <div class="top-image">
                 <img src="capa.jpg" alt="Imagem ilustrativa">
             </div>
@@ -112,6 +162,9 @@
 
         <!-- PÁGINA 2 (atividades) -->
         <div id="pag2" class="page">
+            <div class="back-arrow" onclick="voltar()">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </div>
             <span class="step-badge">2° PASSO</span>
             <h1>Quais atividades deseja monitorar?</h1>
             <p class="sub">*Você pode selecionar quantas alternativas quiser</p>
@@ -138,12 +191,23 @@
 
         <!-- PÁGINA 3 (número) -->
         <div id="pag3" class="page">
+            <div class="back-arrow" onclick="voltar()">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </div>
             <span class="step-badge">3° PASSO</span>
             <div class="emoji-lock" style="font-size:48px;margin-bottom:12px">🔒</div>
             <h1>Qual o número da pessoa?</h1>
             <p class="sub">Insira o número de telefone para prosseguir com a análise.</p>
             <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15" style="width:100%;background:#111;border:2px solid #25D366;border-radius:12px;padding:16px;font-size:18px;color:#fff;text-align:center;margin-bottom:24px;outline:none" oninput="verificaNumero()">
             <button class="continue-btn" id="btnNumero" disabled onclick="finalizar()">CONTINUAR</button>
+            
+            <!-- Loading Progress -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <div class="loading-text" id="loadingText">0%</div>
+            </div>
         </div>
 
     </div>
@@ -162,6 +226,15 @@
             // Opcional: exibe mensagem ou apenas ignora
         });
 
+        function voltar(){
+            if(pagAtual > 1){
+                pagAtual--;
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('pag' + pagAtual).classList.add('active');
+                history.pushState({page:pagAtual}, '', '#' + pagAtual);
+            }
+        }
+
         function escolha(dispositivo){
             localStorage.setItem('dispositivo', dispositivo);
             pagAtual = 2;
@@ -169,18 +242,22 @@
             document.getElementById('pag1').classList.remove('active');
             document.getElementById('pag2').classList.add('active');
         }
+        
         function toggle(el){
             el.querySelector('.check').classList.toggle('selected');
         }
+        
         function marcarTodos(){
             const checks = document.querySelectorAll('#pag2 .check');
             const todos = checks[3].classList.contains('selected');
             checks.forEach(c => c.classList[todos ? 'remove' : 'add']('selected'));
         }
+        
         function verificaAtividades(){
             const selecionados = document.querySelectorAll('#pag2 .check.selected').length;
             document.getElementById('btnAtividades').disabled = selecionados === 0;
         }
+        
         function proximo(){
             const selecionados = [...document.querySelectorAll('#pag2 .check.selected')].map(c => c.parentElement.textContent.trim());
             localStorage.setItem('atividades', JSON.stringify(selecionados));
@@ -189,14 +266,37 @@
             document.getElementById('pag2').classList.remove('active');
             document.getElementById('pag3').classList.add('active');
         }
+        
         function verificaNumero(){
             const v = document.getElementById('numero').value.replace(/\D/g,'');
             document.getElementById('btnNumero').disabled = v.length < 10;
         }
+        
         function finalizar(){
             const v = document.getElementById('numero').value.replace(/\D/g,'');
             localStorage.setItem('numero', v);
-            alert('Número salvo: ' + v);
+            
+            // Esconde botão e mostra loading
+            document.getElementById('btnNumero').style.display = 'none';
+            document.getElementById('loadingContainer').style.display = 'block';
+            
+            // Inicia progress bar
+            let progress = 0;
+            const progressBar = document.getElementById('loadingProgress');
+            const progressText = document.getElementById('loadingText');
+            
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressText.textContent = progress + '%';
+                
+                if(progress >= 100){
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        alert('Número salvo: ' + v);
+                    }, 500);
+                }
+            }, 200); // 200ms * 100 = 20 segundos
         }
     </script>
 </body>
