@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<!-- Mirrored from detetivesigiloso.app/pre/step-02.html?device=android by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 17:00:21 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="../../detetiveinvestigador.online/index.html" />
+    <title>SpyZap - Pergunta 2</title>
+    <meta name="description" content="Spyzap - Pergunta 2" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            background: url('https://detetivesigiloso.app/assets/imgs/bg.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background-color: white;
+        }
+
+        header h2 {
+            margin: 0 0 0 10px;
+            font-size: 24px;
+            color: #49C858;
+        }
+
+        header img {
+            height: 30px;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .quiz-step {
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .quiz-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .activities-form {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .activity-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-option:hover {
+            background: rgba(37, 211, 102, 0.2);
+            border-color: #25D366;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .activity-option.selected {
+            background: rgba(37, 211, 102, 0.3);
+            border-color: #25D366;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .activity-option::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            50% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+        }
+
+        .custom-checkbox {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #25D366;
+            border-radius: 6px;
+            margin-right: 20px;
+            position: relative;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox.checked {
+            background: #25D366;
+        }
+
+        .custom-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .activity-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .next-button {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 50%, #25D366 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 8px 25px rgba(37, 211, 102, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .next-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .next-button:hover {
+            background: linear-gradient(135deg, #128C7E 0%, #25D366 50%, #128C7E 100%);
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 35px rgba(37, 211, 102, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .next-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Rodapé */
+        .footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .footer-copyright {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-link {
+            color: #25D366;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .quiz-container {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+
+            .quiz-title {
+                font-size: 28px;
+            }
+
+            .quiz-question {
+                font-size: 20px;
+            }
+
+            .activity-option {
+                padding: 15px;
+            }
+
+            .activity-text {
+                font-size: 18px;
+            }
+
+            .next-button {
+                font-size: 20px;
+                padding: 18px 35px;
+            }
+        }
+    </style>
+
+    <script>
+        window.pixelId = "689a601d718eea4dbf5e2c92";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "../../cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+</head>
+
+<body>
+    <script>
+  window.googlePixelId = "68c1cf5a4f4d37c2f0ad3562";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "../../cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+  document.head.appendChild(a);
+</script>
+    <header>
+        <img src="../assets/imgs/logoEspiaZap.png" alt="WhatsApp">
+        <h2>SpyZap</h2>
+    </header>
+
+    <div class="quiz-container">
+        <div class="quiz-step">2º Passo</div>
+
+        <h1 class="quiz-title">Quais atividades deseja monitorar?</h1>
+        <p class="quiz-question">*Você pode selecionar quantas alternativas quiser</p>
+
+        <form class="activities-form" id="activitiesForm">
+            <div class="activity-option" data-value="whatsapp">
+                <div class="custom-checkbox"></div>
+                <div class="activity-text">WhatsApp e mensagens (incluindo mensagens excluídas)</div>
+            </div>
+
+            <div class="activity-option" data-value="calls">
+                <div class="custom-checkbox"></div>
+                <div class="activity-text">Chamadas</div>
+            </div>
+
+            <div class="activity-option" data-value="location">
+                <div class="custom-checkbox"></div>
+                <div class="activity-text">Localização GPS</div>
+            </div>
+
+            <div class="activity-option" data-value="all" id="selectAll">
+                <div class="custom-checkbox"></div>
+                <div class="activity-text">Tudo acima</div>
+            </div>
+        </form>
+
+        <button class="next-button" id="nextButton" onclick="goToNextStep()">PRÓXIMO</button>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                ©2025 SpyZap - Todos os direitos Reservados
+            </div>
+            <div class="footer-disclaimer">
+                Esta plataforma tem finalidade exclusivamente informativa e é voltada para auxiliar pais, responsáveis legais e profissionais autorizados a entenderem ferramentas de monitoramento de dispositivos, sempre dentro dos limites da legislação vigente e com o devido consentimento.
+                                <br>
+
+                
+                Este site não é parte do site do Google ou do Google Inc. Além disso, este site não é endossado pelo
+                Google de nenhuma forma. Google é uma marca registrada de Google, Inc. O conteúdo e as informações
+                presentes neste site são de responsabilidade exclusiva do proprietário do domínio. Este site não é
+                afiliado ou endossado pelo Google, Google ou qualquer outra marca mencionada. Todas as marcas
+                registradas pertencem aos seus respectivos proprietários. Os resultados podem variar de pessoa para
+                pessoa. As informações contidas neste site têm caráter meramente informativo e não substituem o
+                aconselhamento de um profissional qualificado. Este site utiliza cookies para melhorar a experiência do
+                usuário. Ao continuar navegando, você concorda com a nossa.
+                <br><br>
+                Este site segue as diretrizes e políticas de publicidade do Google Ads. Todas as informações aqui
+                apresentadas são de caráter educativo e informativo.
+                Resultados podem variar de pessoa para pessoa. Nenhuma garantia de resultado é feita. O uso deste site
+                implica na aceitação dos nossos <a href="https://detetivesigiloso.app/termos-de-uso.html" class="footer-link">Termos de Uso</a> e 
+<a href="https://detetivesigiloso.app/politica-privacidade.html" class="footer-link">Política de Privacidade</a>.
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- UTM helpers ---
+        function getUTMQueryString() {
+            const src = new URLSearchParams(window.location.search);
+            const utm = new URLSearchParams();
+            for (const [k, v] of src.entries()) {
+                if (k.toLowerCase().startsWith("utm_")) utm.set(k, v);
+            }
+            return utm.toString(); // ex.: "utm_source=google&utm_medium=cpc"
+        }
+
+        const activityOptions = document.querySelectorAll('.activity-option');
+        const selectAllOption = document.getElementById('selectAll');
+        const nextButton = document.getElementById('nextButton');
+        let selectedActivities = [];
+
+        // Adicionar event listeners para todas as opções
+        activityOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const value = this.getAttribute('data-value');
+
+                if (value === 'all') {
+                    // Se clicar em "Tudo acima"
+                    if (this.classList.contains('selected')) {
+                        // Desmarcar tudo
+                        activityOptions.forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.querySelector('.custom-checkbox').classList.remove('checked');
+                        });
+                        selectedActivities = [];
+                    } else {
+                        // Marcar tudo
+                        activityOptions.forEach(opt => {
+                            opt.classList.add('selected');
+                            opt.querySelector('.custom-checkbox').classList.add('checked');
+                        });
+                        selectedActivities = ['whatsapp', 'calls', 'location', 'all'];
+                    }
+                } else {
+                    // Se clicar em uma opção específica
+                    if (this.classList.contains('selected')) {
+                        // Desmarcar esta opção
+                        this.classList.remove('selected');
+                        this.querySelector('.custom-checkbox').classList.remove('checked');
+                        selectedActivities = selectedActivities.filter(act => act !== value);
+
+                        // Desmarcar "Tudo acima" se estava marcado
+                        if (selectAllOption.classList.contains('selected')) {
+                            selectAllOption.classList.remove('selected');
+                            selectAllOption.querySelector('.custom-checkbox').classList.remove('checked');
+                            selectedActivities = selectedActivities.filter(act => act !== 'all');
+                        }
+                    } else {
+                        // Marcar esta opção
+                        this.classList.add('selected');
+                        this.querySelector('.custom-checkbox').classList.add('checked');
+                        selectedActivities.push(value);
+
+                        // Verificar se todas as opções específicas estão marcadas
+                        const specificOptions = ['whatsapp', 'calls', 'location'];
+                        const allSpecificSelected = specificOptions.every(opt => selectedActivities.includes(opt));
+
+                        if (allSpecificSelected && !selectedActivities.includes('all')) {
+                            selectAllOption.classList.add('selected');
+                            selectAllOption.querySelector('.custom-checkbox').classList.add('checked');
+                            selectedActivities.push('all');
+                        }
+                    }
+                }
+
+                updateNextButton();
+            });
+        });
+
+        function updateNextButton() {
+            nextButton.disabled = selectedActivities.length === 0;
+        }
+
+        function goToNextStep() {
+            if (selectedActivities.length > 0) {
+                // Obter parâmetros da URL anterior
+                const urlParams = new URLSearchParams(window.location.search);
+                const device = urlParams.get('device') || 'android';
+
+                // Monta base da próxima etapa
+                const activitiesParam = selectedActivities.join(',');
+                let nextUrl = `step-03.html?device=${encodeURIComponent(device)}&activities=${encodeURIComponent(activitiesParam)}`;
+
+                // Anexa UTMs da página atual
+                const utm = getUTMQueryString();
+                if (utm) nextUrl += `&${utm}`;
+
+                window.location.href = nextUrl;
+            }
+        }
+
+        // Expor a função pro onclick do botão
+        window.goToNextStep = goToNextStep;
+
+        // Inicializar estado do botão
+        updateNextButton();
+    </script>
+
+    <script>
+        window.pixelId = "689a601d718eea4dbf5e2c92";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "../../cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+
+    <script src="../../cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+
+</body>
+
+
+<!-- Mirrored from detetivesigiloso.app/pre/step-02.html?device=android by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 17:00:21 GMT -->
+</html>
