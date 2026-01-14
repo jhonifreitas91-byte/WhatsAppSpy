@@ -123,6 +123,38 @@ function tick(now) {
     currentProgress = Math.min(100, currentProgress);
     const pct = Math.floor(currentProgress);
 
+    // === CONTROLE DE ESTADOS DOS CARDS POR % ===
+const cardMsg = document.getElementById('card-msg');
+const cardImg = document.getElementById('card-img');
+const cardLoc = document.getElementById('card-loc');
+
+if (pct >= 20 && cardMsg) {
+    cardMsg.classList.add('processing');
+}
+
+if (pct >= 50 && cardMsg) {
+    cardMsg.classList.remove('processing');
+    cardMsg.classList.add('completed');
+}
+
+if (pct >= 55 && cardImg) {
+    cardImg.classList.add('processing');
+}
+
+if (pct >= 75 && cardImg) {
+    cardImg.classList.remove('processing');
+    cardImg.classList.add('completed');
+}
+
+if (pct >= 80 && cardLoc) {
+    cardLoc.classList.add('processing');
+}
+
+if (pct >= 95 && cardLoc) {
+    cardLoc.classList.remove('processing');
+    cardLoc.classList.add('completed');
+}
+
     // ✅ Atualiza SOMENTE se mudou o número
     if (pct !== lastPct) {
         lastPct = pct;
