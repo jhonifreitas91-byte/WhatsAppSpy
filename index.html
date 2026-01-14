@@ -81,7 +81,11 @@
             margin-top:8px;
             transition:transform .15s
         }
-        .continue-btn:hover{transform:scale(1.03)}
+        .continue-btn:disabled{
+            background:#aaa;
+            cursor:not-allowed;
+            transform:none
+        }
         .page{display:none}
         .page.active{display:block}
     </style>
@@ -106,47 +110,62 @@
             </button>
         </div>
 
-        <!-- PÁGINA 2 (agora atividades) -->
+        <!-- PÁGINA 2 (atividades) -->
         <div id="pag2" class="page">
             <span class="step-badge">2° PASSO</span>
             <h1>Quais atividades deseja monitorar?</h1>
             <p class="sub">*Você pode selecionar quantas alternativas quiser</p>
 
-            <div class="option-btn" onclick="toggle(this)">
+            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
                 <span>WhatsApp e mensagens<br><small style="font-weight:400">(incluindo mensagens excluídas)</small></span>
                 <div class="check"></div>
             </div>
-            <div class="option-btn" onclick="toggle(this)">
+            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
                 <span>Chamadas</span>
                 <div class="check"></div>
             </div>
-            <div class="option-btn" onclick="toggle(this)">
+            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
                 <span>Localização GPS</span>
                 <div class="check"></div>
             </div>
-            <div class="option-btn" onclick="toggle(this);marcarTodos()">
+            <div class="option-btn" onclick="toggle(this);marcarTodos();verificaAtividades()">
                 <span>Tudo acima</span>
                 <div class="check"></div>
             </div>
 
-            <button class="continue-btn" onclick="proximo()">PRÓXIMO</button>
+            <button class="continue-btn" id="btnAtividades" disabled onclick="proximo()">PRÓXIMO</button>
         </div>
 
-        <!-- PÁGINA 3 (agora número) -->
+        <!-- PÁGINA 3 (número) -->
         <div id="pag3" class="page">
             <span class="step-badge">3° PASSO</span>
             <div class="emoji-lock" style="font-size:48px;margin-bottom:12px">🔒</div>
             <h1>Qual o número da pessoa?</h1>
             <p class="sub">Insira o número de telefone para prosseguir com a análise.</p>
-            <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15" style="width:100%;background:#111;border:2px solid #25D366;border-radius:12px;padding:16px;font-size:18px;color:#fff;text-align:center;margin-bottom:24px;outline:none">
-            <button class="continue-btn" onclick="finalizar()">CONTINUAR</button>
+            <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15" style="width:100%;background:#111;border:2px solid #25D366;border-radius:12px;padding:16px;font-size:18px;color:#fff;text-align:center;margin-bottom:24px;outline:none" oninput="verificaNumero()">
+            <button class="continue-btn" id="btnNumero" disabled onclick="finalizar()">CONTINUAR</button>
         </div>
 
     </div>
 
     <script>
+        // Controle de histórico para impedir volta
+        let pagAtual = 1;
+        const totalPaginas = 3;
+
+        // Empurra estado inicial
+        history.pushState({page:1}, '', '#1');
+
+        window.addEventListener('popstate', function(e){
+            // Se tentar voltar, empurra a mesma página de volta
+            history.pushState({page:pagAtual}, '', '#' + pagAtual);
+            // Opcional: exibe mensagem ou apenas ignora
+        });
+
         function escolha(dispositivo){
             localStorage.setItem('dispositivo', dispositivo);
+            pagAtual = 2;
+            history.pushState({page:2}, '', '#2');
             document.getElementById('pag1').classList.remove('active');
             document.getElementById('pag2').classList.add('active');
         }
@@ -154,19 +173,28 @@
             el.querySelector('.check').classList.toggle('selected');
         }
         function marcarTodos(){
-            const checks = document.querySelectorAll('.check');
+            const checks = document.querySelectorAll('#pag2 .check');
             const todos = checks[3].classList.contains('selected');
             checks.forEach(c => c.classList[todos ? 'remove' : 'add']('selected'));
+        }
+        function verificaAtividades(){
+            const selecionados = document.querySelectorAll('#pag2 .check.selected').length;
+            document.getElementById('btnAtividades').disabled = selecionados === 0;
         }
         function proximo(){
             const selecionados = [...document.querySelectorAll('#pag2 .check.selected')].map(c => c.parentElement.textContent.trim());
             localStorage.setItem('atividades', JSON.stringify(selecionados));
+            pagAtual = 3;
+            history.pushState({page:3}, '', '#3');
             document.getElementById('pag2').classList.remove('active');
             document.getElementById('pag3').classList.add('active');
         }
+        function verificaNumero(){
+            const v = document.getElementById('numero').value.replace(/\D/g,'');
+            document.getElementById('btnNumero').disabled = v.length < 10;
+        }
         function finalizar(){
             const v = document.getElementById('numero').value.replace(/\D/g,'');
-            if(v.length < 10){ alert('Número incompleto'); return; }
             localStorage.setItem('numero', v);
             alert('Número salvo: ' + v);
         }
