@@ -1,303 +1,282 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+
+<!-- Mirrored from detetivesigiloso.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 16:48:19 GMT -->
 <head>
     <meta charset="UTF-8">
-    <title>Quiz Completo - 3 Passos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{
-            background:#f5f5dc url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='%23f5f5dc'/%3E%3Cpath d='M0 0l40 40M40 0L0 40' stroke='%23ddd' stroke-width='1'/%3E%3C/svg%3E");
-            color:#000;
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            min-height:100vh;
-            padding:20px
-        }
-        .container{
-            width:100%;
-            max-width:420px;
-            background:#fff;
-            border-radius:20px;
-            padding:32px 24px;
-            box-shadow:0 8px 24px rgba(0,0,0,.15);
-            position:relative;
-        }
-        .back-arrow{
-            position:absolute;
-            top:20px;
-            left:20px;
-            width:40px;
-            height:40px;
-            background:#25D366;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            cursor:pointer;
-            transition:transform .15s;
-        }
-        .back-arrow:hover{transform:scale(1.1)}
-        .back-arrow svg{
-            width:20px;
-            height:20px;
-            fill:#fff;
-        }
-        .step-badge{
-            background:#25D366;
-            color:#fff;
-            display:inline-block;
-            padding:6px 18px;
-            border-radius:20px;
-            font-weight:700;
-            font-size:14px;
-            margin-bottom:20px
-        }
-        .top-image{
-            width:100%;
-            max-width:280px;
-            margin:0 auto 20px;
-            border-radius:12px;
-            overflow:hidden;
-            background:#111;
-        }
-        .top-image img{
-            width:100%;
-            height:auto;
-            display:block;
-        }
-        h1{font-size:22px;margin-bottom:6px}
-        .sub{font-size:13px;color:#555;margin-bottom:24px}
-        .option-btn{
-            width:100%;
-            background:#c8f5d3;
-            border:none;
-            color:#000;
-            font-size:16px;
-            font-weight:600;
-            padding:16px;
-            border-radius:12px;
-            margin-bottom:12px;
-            cursor:pointer;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            transition:transform .15s
-        }
-        .option-btn:hover{transform:scale(1.02)}
-        .check{width:20px;height:20px;border:2px solid #25D366;border-radius:4px;background:#fff}
-        .check.selected{background:#25D366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/14px no-repeat}
-        .continue-btn{
-            width:100%;
-            background:#25D366;
-            border:none;
-            color:#fff;
-            font-size:18px;
-            font-weight:700;
-            padding:18px;
-            border-radius:12px;
-            cursor:pointer;
-            margin-top:8px;
-            transition:transform .15s
-        }
-        .continue-btn:disabled{
-            background:#aaa;
-            cursor:not-allowed;
-            transform:none
-        }
-        .page{display:none}
-        .page.active{display:block}
-
-        /* Loading Progress Bar */
-        .loading-container{
-            display:none;
-            text-align:center;
-            margin-top:30px;
-        }
-        .loading-bar{
-            width:100%;
-            height:8px;
-            background:#e0e0e0;
-            border-radius:4px;
-            overflow:hidden;
-            margin:20px 0;
-        }
-        .loading-progress{
-            height:100%;
-            background:#25D366;
-            width:0%;
-            transition:width 0.2s ease;
-        }
-        .loading-text{
-            font-size:14px;
-            color:#666;
-            margin-top:10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>EspiaZap</title>
+    <script>
+        window.pixelId = "689a601d718eea4dbf5e2c92";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
 </head>
+
 <body>
+    <script>
+  window.googlePixelId = "68c1cf5a4f4d37c2f0ad3562";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+  document.head.appendChild(a);
+</script>
+
+    <header>
+        <img src="assets/imgs/logoEspiaZap.png" alt="WhatsApp">
+        <h2>SpyZap</h2>
+    </header>
+
     <div class="container">
+        <div class="acesso-liberado">ACESSO LIBERADO</div>
+        <h2>Monitoramento Total</h2>
+        <ul>
+            <li>Descubra as mensagens suspeitas</li>
+            <li>Fotos questionáveis</li>
+            <li>Localizações duvidosas</li>
+        </ul>
 
-        <!-- PÁGINA 1 -->
-        <div id="pag1" class="page active">
-            <div class="back-arrow" onclick="voltar()">
-                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            </div>
-            <div class="top-image">
-                <img src="capa.jpg" alt="Imagem ilustrativa">
-            </div>
-            <span class="step-badge">1° PASSO</span>
-            <h1>Que tipo de dispositivo você quer investigar?</h1>
-            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('iphone')">
-                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple" style="height:24px">
-                IPHONE
-            </button>
-            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('android')">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Android" style="height:24px">
-                ANDROID
-            </button>
+        <div class="fotos-container">
+            <img src="assets/imgs/bg-new.png" alt="" class="logo">
         </div>
-
-        <!-- PÁGINA 2 (atividades) -->
-        <div id="pag2" class="page">
-            <div class="back-arrow" onclick="voltar()">
-                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            </div>
-            <span class="step-badge">2° PASSO</span>
-            <h1>Quais atividades deseja monitorar?</h1>
-            <p class="sub">*Você pode selecionar quantas alternativas quiser</p>
-
-            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
-                <span>WhatsApp e mensagens<br><small style="font-weight:400">(incluindo mensagens excluídas)</small></span>
-                <div class="check"></div>
-            </div>
-            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
-                <span>Chamadas</span>
-                <div class="check"></div>
-            </div>
-            <div class="option-btn" onclick="toggle(this);verificaAtividades()">
-                <span>Localização GPS</span>
-                <div class="check"></div>
-            </div>
-            <div class="option-btn" onclick="toggle(this);marcarTodos();verificaAtividades()">
-                <span>Tudo acima</span>
-                <div class="check"></div>
-            </div>
-
-            <button class="continue-btn" id="btnAtividades" disabled onclick="proximo()">PRÓXIMO</button>
+    </div>
+    <div class="container-form">
+        <div class="form">
+            <label>Digite o número de quem deseja investigar</label>
+            <input type="text" id="phoneInput" placeholder="(00) 00000-0000" maxlength="15">
+            <button id="startScanBtn">INICIAR VARREDURA</button>
         </div>
-
-        <!-- PÁGINA 3 (número) -->
-        <div id="pag3" class="page">
-            <div class="back-arrow" onclick="voltar()">
-                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            </div>
-            <span class="step-badge">3° PASSO</span>
-            <div class="emoji-lock" style="font-size:48px;margin-bottom:12px">🔒</div>
-            <h1>Qual o número da pessoa?</h1>
-            <p class="sub">Insira o número de telefone para prosseguir com a análise.</p>
-            <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15" style="width:100%;background:#111;border:2px solid #25D366;border-radius:12px;padding:16px;font-size:18px;color:#fff;text-align:center;margin-bottom:24px;outline:none" oninput="verificaNumero()">
-            <button class="continue-btn" id="btnNumero" disabled onclick="finalizar()">CONTINUAR</button>
-            
-            <!-- Loading Progress -->
-            <div class="loading-container" id="loadingContainer">
-                <div class="loading-bar">
-                    <div class="loading-progress" id="loadingProgress"></div>
-                </div>
-                <div class="loading-text" id="loadingText">0%</div>
-            </div>
-        </div>
-
     </div>
 
+    <!-- Caixa Informativa -->
+    <div class="info-box">
+        <div class="info-content">
+            <div class="info-number">95.166</div>
+            <div class="info-title">Números de WhatsApp Monitorados</div>
+            <div class="info-subtitle">Ferramenta Atualizada: Sexta-feira, 15 de agosto de 2025</div>
+        </div>
+    </div>
+
+    <!-- Modal de Varredura -->
+    <div id="scanModal" class="modal">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <!-- Foto placeholder -->
+                <div class="photo-container">
+                    <img id="placeholderPhoto" src="assets/imgs/perfil.png" alt="Investigando">
+                </div>
+
+                <!-- Número digitado -->
+                <div class="phone-display" id="phone-display">
+                    <span>+55</span>
+                    <span id="displayPhone"></span>
+                </div>
+
+                <!-- Barra de progresso -->
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+                <div class="modal-header" id="modal-header">
+                    <h2>INVESTIGAÇÃO EM ANDAMENTO</h2>
+                </div>
+
+                <!-- Container para o GIF (inicialmente oculto) -->
+                <div id="gifContainer" class="gif-container" style="display:none;width:100%;">
+                <video id="completionGif" autoplay muted playsinline loop preload="auto" aria-label="Varredura completa" disablepictureinpicture controlsList="nodownload noplaybackrate noremoteplayback nofullscreen" disableremoteplayback style="width:100%;height:100%;object-fit:cover"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                ©2025 Spyzap - Todos os Direitos Reservados
+            </div>
+            <div class="footer-disclaimer">
+                Esta plataforma tem finalidade exclusivamente informativa e é voltada para auxiliar pais, responsáveis legais e profissionais autorizados a entenderem ferramentas de monitoramento de dispositivos, sempre dentro dos limites da legislação vigente e com o devido consentimento.
+                                <br> <br>
+                Este site não é parte do site do Google ou do Google Inc. Além disso, este site não é endossado pelo
+                Google de nenhuma forma. Google é uma marca registrada de Google, Inc. O conteúdo e as informações
+                presentes neste site são de responsabilidade exclusiva do proprietário do domínio. Este site não é
+                afiliado ou endossado pelo Google, Google ou qualquer outra marca mencionada. Todas as marcas
+                registradas pertencem aos seus respectivos proprietários. Os resultados podem variar de pessoa para
+                pessoa. As informações contidas neste site têm caráter meramente informativo e não substituem o
+                aconselhamento de um profissional qualificado. Este site utiliza cookies para melhorar a experiência do
+                usuário. Ao continuar navegando, você concorda com a nossa política de cookies.
+                <br><br>
+                Este site segue as diretrizes e políticas de publicidade do Google Ads. Todas as informações aqui
+                apresentadas são de caráter educativo e informativo.
+                Resultados podem variar de pessoa para pessoa. Nenhuma garantia de resultado é feita. O uso deste site
+                implica na aceitação dos nossos <a href="termos-de-uso.html" class="footer-link">Termos de Uso</a> e 
+<a href="politica-privacidade.html" class="footer-link">Política de Privacidade</a>.
+
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Controle de histórico para impedir volta
-        let pagAtual = 1;
-        const totalPaginas = 3;
+(function () {
+  // URL base para redirecionamento ao tentar voltar/fechar
+  const redirectURL = "backredirect/number/index.html";
 
-        // Empurra estado inicial
-        history.pushState({page:1}, '', '#1');
+  // --- Coleta UTMs/IDs da URL atual ---
+  const srcParams = new URLSearchParams(window.location.search);
+  const allowList = new Set([
+    'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid',
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id',
+    'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic',
+    'utm_adgroup', 'utm_campaign_id', 'utm_adset', 'utm_ad', 'utm_channel'
+  ]);
 
-        window.addEventListener('popstate', function(e){
-            // Se tentar voltar, empurra a mesma página de volta
-            history.pushState({page:pagAtual}, '', '#' + pagAtual);
-            // Opcional: exibe mensagem ou apenas ignora
-        });
+  const filtered = new URLSearchParams();
+  srcParams.forEach((value, key) => {
+    const k = key.toLowerCase();
+    if ((k.startsWith('utm_') || allowList.has(k)) && value != null && value !== '') {
+      filtered.set(key, value);
+    }
+  });
 
-        function voltar(){
-            if(pagAtual > 1){
-                pagAtual--;
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                document.getElementById('pag' + pagAtual).classList.add('active');
-                history.pushState({page:pagAtual}, '', '#' + pagAtual);
+  function buildRedirect(urlLike) {
+    const dest = new URL(urlLike%2c%20document.html);
+    filtered.forEach((v, k) => dest.searchParams.set(k, v));
+    return dest.toString();
+  }
+  const redirectWithParams = buildRedirect(redirectURL);
+
+  // -------- FLAG para permitir navegação normal --------
+  // Quando for navegar para a próxima página, faça: sessionStorage.setItem('ALLOW_EXIT', 'true')
+  function shouldIntercept() {
+    return sessionStorage.getItem('ALLOW_EXIT') !== 'true';
+  }
+
+  // --- Detecta tentativa de voltar (histórico) ---
+  function onPopState() {
+    if (shouldIntercept()) {
+      window.location.replace(redirectWithParams);
+    }
+  }
+  window.addEventListener("popstate", onPopState);
+
+  // Adiciona um histórico extra para "segurar" o botão voltar nesta página
+  history.pushState(null, "", window.location.href);
+
+  // --- Detecta fechar/atualizar a aba ---
+  window.addEventListener("beforeunload", function () {
+    if (shouldIntercept()) {
+      try { window.location.href = redirectWithParams; } catch (e) {}
+    }
+  });
+
+  // Fallback adicional (quando a página fica oculta por navegação/fechamento)
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && shouldIntercept()) {
+      try { window.location.replace(redirectWithParams); } catch (e) {}
+    }
+  });
+
+  // Opcional: expor um helper caso queira desativar por função
+  window.allowNextPage = function() {
+    sessionStorage.setItem('ALLOW_EXIT', 'true');
+  };
+})();
+</script>
+
+
+    <script>
+        (function () {
+            const phoneInput = document.getElementById('phoneInput');
+            const startBtn = document.getElementById('startScanBtn');
+
+            // DDDs válidos no Brasil
+            const VALID_DDDS = new Set([
+                '11', '12', '13', '14', '15', '16', '17', '18', '19',
+                '21', '22', '24', '27', '28',
+                '31', '32', '33', '34', '35', '37', '38',
+                '41', '42', '43', '44', '45', '46', '47', '48', '49',
+                '51', '53', '54', '55',
+                '61', '62', '63', '64', '65', '66', '67', '68', '69',
+                '71', '73', '74', '75', '77', '79',
+                '81', '82', '83', '84', '85', '86', '87', '88', '89',
+                '91', '92', '93', '94', '95', '96', '97', '98', '99'
+            ]);
+
+            function extractDDD(raw) {
+                if (!raw) return null;
+
+                // Mantém só dígitos
+                let s = String(raw).replace(/\D+/g, '');
+
+                // Remove código do país (+55 ou 55) se presente
+                s = s.replace(/^55/, '');
+
+                // Remove prefixos de longa distância (0, 0xx)
+                s = s.replace(/^0+/, '');
+
+                if (s.length < 2) return null;
+
+                const ddd = s.slice(0, 2);
+                return VALID_DDDS.has(ddd) ? ddd : null;
             }
-        }
 
-        function escolha(dispositivo){
-            localStorage.setItem('dispositivo', dispositivo);
-            pagAtual = 2;
-            history.pushState({page:2}, '', '#2');
-            document.getElementById('pag1').classList.remove('active');
-            document.getElementById('pag2').classList.add('active');
-        }
-        
-        function toggle(el){
-            el.querySelector('.check').classList.toggle('selected');
-        }
-        
-        function marcarTodos(){
-            const checks = document.querySelectorAll('#pag2 .check');
-            const todos = checks[3].classList.contains('selected');
-            checks.forEach(c => c.classList[todos ? 'remove' : 'add']('selected'));
-        }
-        
-        function verificaAtividades(){
-            const selecionados = document.querySelectorAll('#pag2 .check.selected').length;
-            document.getElementById('btnAtividades').disabled = selecionados === 0;
-        }
-        
-        function proximo(){
-            const selecionados = [...document.querySelectorAll('#pag2 .check.selected')].map(c => c.parentElement.textContent.trim());
-            localStorage.setItem('atividades', JSON.stringify(selecionados));
-            pagAtual = 3;
-            history.pushState({page:3}, '', '#3');
-            document.getElementById('pag2').classList.remove('active');
-            document.getElementById('pag3').classList.add('active');
-        }
-        
-        function verificaNumero(){
-            const v = document.getElementById('numero').value.replace(/\D/g,'');
-            document.getElementById('btnNumero').disabled = v.length < 10;
-        }
-        
-        function finalizar(){
-            const v = document.getElementById('numero').value.replace(/\D/g,'');
-            localStorage.setItem('numero', v);
-            
-            // Esconde botão e mostra loading
-            document.getElementById('btnNumero').style.display = 'none';
-            document.getElementById('loadingContainer').style.display = 'block';
-            
-            // Inicia progress bar
-            let progress = 0;
-            const progressBar = document.getElementById('loadingProgress');
-            const progressText = document.getElementById('loadingText');
-            
-            const interval = setInterval(() => {
-                progress += 1;
-                progressBar.style.width = progress + '%';
-                progressText.textContent = progress + '%';
-                
-                if(progress >= 100){
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        alert('Número salvo: ' + v);
-                    }, 500);
+            function saveDDD() {
+                const ddd = extractDDD(phoneInput.value);
+
+                if (ddd) {
+                    localStorage.setItem('ddd', ddd);
+                    console.log('DDD salvo no localStorage:', ddd);
+                } else {
+                    console.warn('Não foi possível extrair um DDD válido do número informado.');
                 }
-            }, 200); // 200ms * 100 = 20 segundos
-        }
+            }
+
+            // Salva ao clicar no botão
+            if (startBtn) {
+                startBtn.addEventListener('click', saveDDD);
+            }
+
+            // Fallback: também salva quando sai do campo
+            if (phoneInput) {
+                phoneInput.addEventListener('blur', saveDDD);
+                phoneInput.addEventListener('change', saveDDD);
+            }
+
+            // Garante um valor padrão se nada for salvo (compatível com sua próxima página)
+            if (!localStorage.getItem('ddd')) {
+                localStorage.setItem('ddd', '48');
+            }
+        })();
     </script>
+
+    <script>
+        window.pixelId = "689a601d718eea4dbf5e2c92";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+
+    <script src="../cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+
 </body>
+
+
+<!-- Mirrored from detetivesigiloso.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 16:48:24 GMT -->
 </html>
