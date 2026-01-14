@@ -96,49 +96,54 @@ function startProgressBarWithVariableSpeeds({
     const statusIcon = document.getElementById('statusIcon');
     const statusContainer = document.querySelector('.progress-status');
 
-    let currentProgress = 0;
-    let lastTime = performance.now();
-    const timePerPercent = totalDurationMs / 100;
+    let lastPct = -1;
+let lastStatusIndex = -1;
 
-    function updateStatusMessage(progress) {
-        if (progress < 30) return;
-        const interval = statusMessages.find(i => progress >= i.from && progress < i.to);
-        if (!interval) return;
-        const msg = interval.messages[Math.floor(Math.random() * interval.messages.length)];
-        if (statusText) statusText.textContent = msg.text;
-        if (statusIcon) statusIcon.textContent = msg.icon;
-        if (statusContainer) statusContainer.className = 'progress-status ' + msg.type;
+function getStatusIndex(progress) {
+    return statusMessages.findIndex(i => progress >= i.from && progress < i.to);
+}
+
+function tick(now) {
+    const delta = now - lastTime;
+    lastTime = now;
+
+    const interval = speedIntervals.find(i =>
+        currentProgress >= i.from && currentProgress < i.to
+    );
+
+    if (interval) {
+        currentProgress += (delta / timePerPercent) * interval.speed;
     }
 
-    function tick(now) {
-        const delta = now - lastTime;
-        lastTime = now;
+    currentProgress = Math.min(100, currentProgress);
+    const pct = Math.floor(currentProgress);
 
-        const interval = speedIntervals.find(i =>
-            currentProgress >= i.from && currentProgress < i.to
-        );
-
-        if (interval) {
-            currentProgress += (delta / timePerPercent) * interval.speed;
-        }
-
-        currentProgress = Math.min(100, currentProgress);
-        const pct = Math.floor(currentProgress);
-
+    // ✅ Atualiza SOMENTE se mudou o número
+    if (pct !== lastPct) {
+        lastPct = pct;
         bar.style.width = pct + "%";
         texts.forEach(t => t.textContent = pct + "%");
 
-        updateStatusMessage(currentProgress);
+        const statusIndex = getStatusIndex(pct);
+        if (statusIndex !== lastStatusIndex && statusIndex !== -1) {
+            lastStatusIndex = statusIndex;
+            const msgs = statusMessages[statusIndex].messages;
+            const msg = msgs[Math.floor(Math.random() * msgs.length)];
 
-        if (currentProgress < 100) {
-            requestAnimationFrame(tick);
-        } else {
-            bar.style.width = "100%";
-            texts.forEach(t => t.textContent = "100%");
-            if (typeof onComplete === "function") onComplete();
+            if (statusText) statusText.textContent = msg.text;
+            if (statusIcon) statusIcon.textContent = msg.icon;
+            if (statusContainer) statusContainer.className = 'progress-status ' + msg.type;
         }
     }
 
+    if (currentProgress < 100) {
+        requestAnimationFrame(tick);
+    } else {
+        bar.style.width = "100%";
+        texts.forEach(t => t.textContent = "100%");
+        if (typeof onComplete === "function") onComplete();
+    }
+}
     requestAnimationFrame(tick);
 }
 
