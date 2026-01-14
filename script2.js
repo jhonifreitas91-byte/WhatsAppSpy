@@ -58,11 +58,12 @@ function showStageToast(type, icon, title, message) {
 // --- BARRA DE PROGRESSO CORRIGIDA ---
 function startProgressBarWithVariableSpeeds({
     rootSelector = ".progress.neon",
-    totalDurationMs = 360000,
+    totalDurationMs = 28000,
     onComplete,
     speedIntervals = [
-        { from: 0, to: 60, speed: 18.5 },
-        { from: 60, to: 100, speed: 0.41 }
+        { from: 0, to: 60, speed: 2.5 },
+        { from: 60, to: 85, speed: 1,6 },
+        { from: 85, to: 100, speed: 0.9 }
     ],
     statusMessages = [
         { from: 30, to: 60, messages: [
