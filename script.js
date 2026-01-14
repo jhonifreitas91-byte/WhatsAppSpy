@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('❌ [IMG] Falha ao carregar a imagem.');
                 apiImageFound = false;
                 placeholderPhoto.onerror = null;
-                placeholderPhoto.src = './assets/imgs/perfil.png';
+                placeholderPhoto.src = '/perfil.png';
                 placeholderPhoto.style.opacity = '1';
                 // Limpa URL antiga
                 localStorage.removeItem('profileImage');
