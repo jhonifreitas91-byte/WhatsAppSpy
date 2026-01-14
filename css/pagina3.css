@@ -1,0 +1,401 @@
+/* Estilo geral do corpo */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FCF5EB;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilo do header */
+.header {
+  background-color: #FCF5EB;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo do header */
+.logo {
+  width: 170px;
+}
+
+/* Estilo da área principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  top: 0;
+  z-index: 2;
+}
+
+/* Estilo da caixa centralizada */
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto; /* Centraliza o box */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo dentro do box */
+}
+
+/* Estilo do texto em destaque */
+.red-text {
+  color: #e63946;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Estilo das imagens de perfil ou conversas */
+.phones-img {
+  max-width: 150px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Estilo para o botão de chamada para ação com efeito de pulsação */
+.cta-button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #00b64e;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  line-height: 1.4;
+  animation: pulse 2s infinite; /* Adiciona a animação de pulsação */
+}
+
+.cta-button span {
+  display: block;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.cta-button .sub-text {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.cta-button:hover {
+  background-color: #45A049;
+}
+
+/* Animação de pulsação */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+  }
+  100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+}
+
+
+/* Estilo do footer */
+.footer {
+  background-color: #1d1d1d;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Logo do footer */
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.conversation-image {
+  width: 100%; /* Ajuste para a largura desejada */
+  max-width: 350px; /* Limite máximo para não ultrapassar o box */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 10px; /* Ajuste para bordas arredondadas se necessário */
+  margin: 0 auto; /* Centraliza a imagem no box */
+  display: block; /* Garante que a imagem fique dentro do fluxo */
+}
+
+/* Estilo para o título principal */
+.main-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0 10px;
+  line-height: 1.2;
+}
+
+/* Estilo para o subtítulo */
+.sub-title {
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 20px;
+  color: #333;
+}
+
+/* Estilo para a linha divisória */
+.divider {
+  width: 90%;
+  height: 1px;
+  background-color: #ddd;
+  margin: 15px auto;
+}
+
+/* Estilo para o texto destacado */
+.bold-text {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Estilo para a imagem do mapa */
+.map-image {
+  width: 100%; /* Ajusta para preencher 100% da largura do box */
+  max-width: 380px; /* Limita o tamanho máximo para não ultrapassar o box */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 10px; /* Bordas arredondadas, se necessário */
+  margin: 10px auto; /* Centraliza a imagem no box */
+  display: block; /* Garante que a imagem fique dentro do fluxo */
+}
+
+/* Estilo para a linha divisória */
+.divider {
+  width: 100%;
+  height: 3px;
+  background-color: #ddd;
+  margin: 15px auto; /* Centraliza a linha e ajusta a margem */
+}
+
+.audio-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  justify-content: flex-start;
+  cursor: pointer; 
+  width: 100%;
+}
+
+.audio-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding-right: 8px;
+  padding-left: 10px;
+}
+
+.audio-container .microphone-icon {
+  position: relative;
+  margin-left: -67px;
+  margin-bottom: -25px;
+  font-size: 22px;
+  color: #4ad954;
+}
+
+.audio-container .microphone-icon.blue {
+  color: #3db8ee;
+}
+
+.plyr--audio .plyr__control.plyr__tab-focus,
+.plyr--audio .plyr__control:hover,
+.plyr--audio .plyr__control[aria-expanded=false] {
+  background: rgba(0, 0, 0, 0);
+  background: var(--plyr-audio-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, rgba(0, 0, 0, 0))));
+  color: rgba(0, 0, 0, 0);
+  color: var(--plyr-audio-control-color-hover, #797979)
+}
+
+.plyr--audio .plyr__controls {
+  background: rgba(0, 0, 0, 0);
+  background: var(--plyr-audio-controls-background, rgba(0, 0, 0, 0));
+  border-radius: inherit;
+  color: #4a5464;
+  color: var(--plyr-audio-control-color,#4a5464);
+  margin-left: 0px;
+  padding: 0px;
+}
+
+.plyr--audio .plyr__control--overlaid .plyr__control__icon {
+  font-size: 33px;
+}
+
+.plyr--full-ui input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 100%;
+  box-shadow: 0 1px 1px rgba(35,40,47,.15),0 0 0 1px rgba(35,40,47,.2);
+  box-shadow: var(--plyr-range-thumb-shadow,0 1px 1px rgba(35,40,47,.15),0 0 0 1px rgba(35,40,47,.2));
+  height: 13px;
+  height: var(--plyr-range-thumb-height,13px);
+  margin-top: -4px;
+  margin-top: calc(var(--plyr-range-thumb-height,13px)/2*-1 - var(--plyr-range-track-height,5px)/2*-1);
+  position: relative;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  width: 13px;
+  width: var(--plyr-range-thumb-height,13px);
+  background: var(--range-thumb-background, #4ad954);
+}  
+
+.plyr--full-ui input[type=range].blue::-webkit-slider-thumb {
+  background: var(--range-thumb-background-active, #3db8ee);
+}
+
+.hide {
+  display: none;
+}
+
+.plyr__controls .plyr__controls__item.plyr__progress__container:first-child,
+.plyr__controls .plyr__controls__item.plyr__time+.plyr__time,
+.plyr__controls .plyr__controls__item.plyr__time:first-child {
+  padding-left: 0;
+  display: block;
+  margin-left: 7.5px;
+}
+
+.plyr__time+.plyr__time:before {
+  content: "";
+  margin-right: var(--plyr-control-spacing);
+}
+
+.plyr--audio .plyr__controls .plyr__controls__item.plyr__time--current.hide,
+.plyr--audio .plyr__controls .plyr__controls__item.plyr__time--duration.hide {
+  display: none;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  width: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slide-in 0.5s ease-out;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.notification-text {
+  flex-grow: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes slide-in {
+  from {
+      transform: translateY(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  to {
+      transform: translateY(-100%);
+      opacity: 0;
+  }
+}
+
+/* Estilos para o popup */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.popup h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.popup p {
+  margin: 15px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.popup button {
+  background-color: #00b64e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.popup .close-popup {
+  background: none;
+  border: none;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
