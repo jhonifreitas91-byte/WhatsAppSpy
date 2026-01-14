@@ -1094,4 +1094,39 @@ header img {
         height: 26px;
     }
 }
+/* === CONTROLE REAL DE ESTADOS DOS CARDS === */
 
+/* Estado inicial */
+.card-body {
+    opacity: 0.6;
+}
+
+.card-result {
+    display: none;
+}
+
+/* Processando */
+.card-body.processing {
+    opacity: 1;
+}
+
+.card-body.processing .spinner {
+    display: inline-block;
+}
+
+.card-body.processing .card-result {
+    display: none;
+}
+
+/* Concluído */
+.card-body.completed {
+    opacity: 1;
+}
+
+.card-body.completed .spinner {
+    display: none;
+}
+
+.card-body.completed .card-result {
+    display: flex;
+}
