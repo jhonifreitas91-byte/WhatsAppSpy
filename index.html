@@ -2,13 +2,13 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz Completo - Dispositivo & Número</title>
+    <title>Quiz Completo - 3 Passos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{
-            background:#000;
-            color:#fff;
+            background:#f5f5dc url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='%23f5f5dc'/%3E%3Cpath d='M0 0l40 40M40 0L0 40' stroke='%23ddd' stroke-width='1'/%3E%3C/svg%3E");
+            color:#000;
             font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
             display:flex;
             align-items:center;
@@ -19,11 +19,14 @@
         .container{
             width:100%;
             max-width:420px;
-            text-align:center
+            background:#fff;
+            border-radius:20px;
+            padding:32px 24px;
+            box-shadow:0 8px 24px rgba(0,0,0,.15)
         }
         .step-badge{
             background:#25D366;
-            color:#000;
+            color:#fff;
             display:inline-block;
             padding:6px 18px;
             border-radius:20px;
@@ -44,49 +47,38 @@
             height:auto;
             display:block;
         }
-        h1{font-size:22px;margin-bottom:12px}
-        p.sub{font-size:15px;color:#aaa;margin-bottom:32px}
+        h1{font-size:22px;margin-bottom:6px}
+        .sub{font-size:13px;color:#555;margin-bottom:24px}
         .option-btn{
             width:100%;
-            background:#25D366;
+            background:#c8f5d3;
             border:none;
             color:#000;
-            font-size:18px;
-            font-weight:700;
-            padding:18px;
+            font-size:16px;
+            font-weight:600;
+            padding:16px;
             border-radius:12px;
-            margin-bottom:16px;
+            margin-bottom:12px;
             cursor:pointer;
             display:flex;
             align-items:center;
-            justify-content:center;
-            gap:12px;
+            justify-content:space-between;
             transition:transform .15s
         }
-        .option-btn:hover{transform:scale(1.03)}
-        .option-btn img{height:24px}
-        .input-box{
-            width:100%;
-            background:#111;
-            border:2px solid #25D366;
-            border-radius:12px;
-            padding:16px;
-            font-size:18px;
-            color:#fff;
-            text-align:center;
-            margin-bottom:24px;
-            outline:none
-        }
+        .option-btn:hover{transform:scale(1.02)}
+        .check{width:20px;height:20px;border:2px solid #25D366;border-radius:4px;background:#fff}
+        .check.selected{background:#25D366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/14px no-repeat}
         .continue-btn{
             width:100%;
             background:#25D366;
             border:none;
-            color:#000;
+            color:#fff;
             font-size:18px;
             font-weight:700;
             padding:18px;
             border-radius:12px;
             cursor:pointer;
+            margin-top:8px;
             transition:transform .15s
         }
         .continue-btn:hover{transform:scale(1.03)}
@@ -100,28 +92,54 @@
         <!-- PÁGINA 1 -->
         <div id="pag1" class="page active">
             <div class="top-image">
-                <img src=asteroide.PNG" alt="Imagem ilustrativa">
+                <img src="capa.jpg" alt="Imagem ilustrativa">
             </div>
             <span class="step-badge">1° PASSO</span>
             <h1>Que tipo de dispositivo você quer investigar?</h1>
-            <button class="option-btn" onclick="escolha('iphone')">
-                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple">
+            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('iphone')">
+                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple" style="height:24px">
                 IPHONE
             </button>
-            <button class="option-btn" onclick="escolha('android')">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Android">
+            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('android')">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Android" style="height:24px">
                 ANDROID
             </button>
         </div>
 
-        <!-- PÁGINA 2 -->
+        <!-- PÁGINA 2 (agora atividades) -->
         <div id="pag2" class="page">
             <span class="step-badge">2° PASSO</span>
+            <h1>Quais atividades deseja monitorar?</h1>
+            <p class="sub">*Você pode selecionar quantas alternativas quiser</p>
+
+            <div class="option-btn" onclick="toggle(this)">
+                <span>WhatsApp e mensagens<br><small style="font-weight:400">(incluindo mensagens excluídas)</small></span>
+                <div class="check"></div>
+            </div>
+            <div class="option-btn" onclick="toggle(this)">
+                <span>Chamadas</span>
+                <div class="check"></div>
+            </div>
+            <div class="option-btn" onclick="toggle(this)">
+                <span>Localização GPS</span>
+                <div class="check"></div>
+            </div>
+            <div class="option-btn" onclick="toggle(this);marcarTodos()">
+                <span>Tudo acima</span>
+                <div class="check"></div>
+            </div>
+
+            <button class="continue-btn" onclick="proximo()">PRÓXIMO</button>
+        </div>
+
+        <!-- PÁGINA 3 (agora número) -->
+        <div id="pag3" class="page">
+            <span class="step-badge">3° PASSO</span>
             <div class="emoji-lock" style="font-size:48px;margin-bottom:12px">🔒</div>
             <h1>Qual o número da pessoa?</h1>
             <p class="sub">Insira o número de telefone para prosseguir com a análise.</p>
-            <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15">
-            <button class="continue-btn" onclick="proximo()">CONTINUAR</button>
+            <input type="tel" class="input-box" id="numero" placeholder="(00) 00000-0000" maxlength="15" style="width:100%;background:#111;border:2px solid #25D366;border-radius:12px;padding:16px;font-size:18px;color:#fff;text-align:center;margin-bottom:24px;outline:none">
+            <button class="continue-btn" onclick="finalizar()">CONTINUAR</button>
         </div>
 
     </div>
@@ -132,12 +150,25 @@
             document.getElementById('pag1').classList.remove('active');
             document.getElementById('pag2').classList.add('active');
         }
+        function toggle(el){
+            el.querySelector('.check').classList.toggle('selected');
+        }
+        function marcarTodos(){
+            const checks = document.querySelectorAll('.check');
+            const todos = checks[3].classList.contains('selected');
+            checks.forEach(c => c.classList[todos ? 'remove' : 'add']('selected'));
+        }
         function proximo(){
+            const selecionados = [...document.querySelectorAll('#pag2 .check.selected')].map(c => c.parentElement.textContent.trim());
+            localStorage.setItem('atividades', JSON.stringify(selecionados));
+            document.getElementById('pag2').classList.remove('active');
+            document.getElementById('pag3').classList.add('active');
+        }
+        function finalizar(){
             const v = document.getElementById('numero').value.replace(/\D/g,'');
             if(v.length < 10){ alert('Número incompleto'); return; }
             localStorage.setItem('numero', v);
             alert('Número salvo: ' + v);
-            // leve para a próxima etapa ou reinicie
         }
     </script>
 </body>
