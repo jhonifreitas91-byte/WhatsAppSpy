@@ -5,52 +5,13 @@
     <title>Ver ou Não Ver?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* RESET RÁPIDO */
         *{margin:0;padding:0;box-sizing:border-box}
-        body{
-            background:#000;
-            color:#fff;
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-            min-height:100vh;
-            text-align:center;
-            padding:20px
-        }
-        h1{
-            color:#25D366; /* verde WhatsApp */
-            font-size:clamp(1.8rem, 5vw, 3rem);
-            margin-bottom:12px;
-            letter-spacing:1px
-        }
-        p.sub{
-            font-size:clamp(0.9rem, 2.5vw, 1.1rem);
-            margin-bottom:30px;
-            opacity:.9
-        }
-        video{
-            width:100%;
-            max-width:600px;
-            border-radius:8px;
-            margin-bottom:20px
-        }
-        .decisao{
-            font-size:clamp(1.2rem, 4vw, 1.6rem);
-            margin-bottom:25px;
-            font-weight:600
-        }
-        .btn{
-            background:#25D366;
-            color:#fff;
-            border:none;
-            padding:14px 40px;
-            font-size:1.1rem;
-            border-radius:30px;
-            cursor:pointer;
-            transition:background .2s
-        }
+        body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+        h1{color:#25D366;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:12px;letter-spacing:1px}
+        p.sub{font-size:clamp(0.9rem,2.5vw,1.1rem);margin-bottom:30px;opacity:.9}
+        .video-box{width:100%;max-width:600px;margin-bottom:20px;border-radius:8px;overflow:hidden}
+        .decisao{font-size:clamp(1.2rem,4vw,1.6rem);margin-bottom:25px;font-weight:600}
+        .btn{background:#25D366;color:#fff;border:none;padding:14px 40px;font-size:1.1rem;border-radius:30px;cursor:pointer;transition:background .2s}
         .btn:hover{background:#128C7E}
     </style>
 </head>
@@ -59,16 +20,18 @@
     <h1>AGORA É A PARTE QUE TODO MUNDO TEME, VER OU NÃO VER?</h1>
     <p class="sub">Antes de prosseguir para descobrir o que seu parceiro(a) está vendo, assista o vídeo abaixo.</p>
 
-    <!-- PLAYER: coloque o vídeo na mesma pasta com o nome video.mp4 -->
-    <video controls>
-        <source src="video.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo HTML5.
-    </video>
+    <!-- COLE O LINK DO YOUTUBE AQUI -->
+    <div class="video-box">
+        <iframe width="100%" height="340"
+            src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+    </div>
 
     <p class="decisao">E AÍ, DECIDIU? SE TIVER CERTEZA QUE QUER TER ACESSO AO WHATSAPP DO SEU PARCEIRO, CLIQUE ABAIXO</p>
-
     <button class="btn" onclick="location.href='https://wa.me/55XXXXXXXXX'">QUERO VER</button>
 
 </body>
 </html>
-
