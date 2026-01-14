@@ -94,9 +94,13 @@ function startProgressBarWithVariableSpeeds({
     const statusText = document.getElementById('statusText');
     const statusIcon = document.getElementById('statusIcon');
     const statusContainer = document.querySelector('.progress-status');
+    
+    let currentProgress = 0;
+    let lastTime = performance.now();
+    const timePerPercent = totalDurationMs / 100;
 
     let lastPct = 0;
-let lastStatusIndex = 100;
+    let lastStatusIndex = -1;
 
 function getStatusIndex(progress) {
     return statusMessages.findIndex(i => progress >= i.from && progress < i.to);
