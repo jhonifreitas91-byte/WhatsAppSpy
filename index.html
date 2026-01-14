@@ -22,7 +22,29 @@
             background:#fff;
             border-radius:20px;
             padding:32px 24px;
-            box-shadow:0 8px 24px rgba(0,0,0,.15)
+            box-shadow:0 8px 24px rgba(0,0,0,.15);
+            position:relative
+        }
+        .nav-arrow{
+            position:absolute;
+            top:16px;
+            left:16px;
+            width:32px;
+            height:32px;
+            background:#25D366;
+            border:none;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            transition:transform .15s
+        }
+        .nav-arrow:hover{transform:scale(1.1)}
+        .nav-arrow svg{
+            width:20px;
+            height:20px;
+            fill:#fff
         }
         .step-badge{
             background:#25D366;
@@ -32,7 +54,8 @@
             border-radius:20px;
             font-weight:700;
             font-size:14px;
-            margin-bottom:20px
+            margin-bottom:20px;
+            margin-top:24px
         }
         .top-image{
             width:100%;
@@ -94,24 +117,13 @@
     <div class="container">
 
         <!-- PÁGINA 1 -->
-        <div id="pag1" class="page active">
-            <div class="top-image">
-                <img src="capa.jpg" alt="Imagem ilustrativa">
-            </div>
-            <span class="step-badge">1° PASSO</span>
-            <h1>Que tipo de dispositivo você quer investigar?</h1>
-            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('iphone')">
-                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple" style="height:24px">
-                IPHONE
-            </button>
-            <button class="option-btn" style="background:#25D366;color:#000" onclick="escolha('android')">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Android" style="height:24px">
-                ANDROID
-            </button>
-        </div>
+        <div id="pag1" class="page active"></div>
 
         <!-- PÁGINA 2 (atividades) -->
         <div id="pag2" class="page">
+            <button class="nav-arrow" onclick="voltar(1)">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
             <span class="step-badge">2° PASSO</span>
             <h1>Quais atividades deseja monitorar?</h1>
             <p class="sub">*Você pode selecionar quantas alternativas quiser</p>
@@ -138,6 +150,9 @@
 
         <!-- PÁGINA 3 (número) -->
         <div id="pag3" class="page">
+            <button class="nav-arrow" onclick="voltar(2)">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
             <span class="step-badge">3° PASSO</span>
             <div class="emoji-lock" style="font-size:48px;margin-bottom:12px">🔒</div>
             <h1>Qual o número da pessoa?</h1>
@@ -149,25 +164,9 @@
     </div>
 
     <script>
-        // Controle de histórico para impedir volta
-        let pagAtual = 1;
-        const totalPaginas = 3;
-
-        // Empurra estado inicial
-        history.pushState({page:1}, '', '#1');
-
-        window.addEventListener('popstate', function(e){
-            // Se tentar voltar, empurra a mesma página de volta
-            history.pushState({page:pagAtual}, '', '#' + pagAtual);
-            // Opcional: exibe mensagem ou apenas ignora
-        });
-
-        function escolha(dispositivo){
-            localStorage.setItem('dispositivo', dispositivo);
-            pagAtual = 2;
-            history.pushState({page:2}, '', '#2');
-            document.getElementById('pag1').classList.remove('active');
-            document.getElementById('pag2').classList.add('active');
+        function voltar(pagAnterior){
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('pag' + pagAnterior).classList.add('active');
         }
         function toggle(el){
             el.querySelector('.check').classList.toggle('selected');
@@ -184,8 +183,6 @@
         function proximo(){
             const selecionados = [...document.querySelectorAll('#pag2 .check.selected')].map(c => c.parentElement.textContent.trim());
             localStorage.setItem('atividades', JSON.stringify(selecionados));
-            pagAtual = 3;
-            history.pushState({page:3}, '', '#3');
             document.getElementById('pag2').classList.remove('active');
             document.getElementById('pag3').classList.add('active');
         }
