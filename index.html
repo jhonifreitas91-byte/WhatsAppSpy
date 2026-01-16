@@ -1,282 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-
-<!-- Mirrored from detetivesigiloso.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 16:48:19 GMT -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>EspiaZap</title>
-    <script>
-        window.pixelId = "689a601d718eea4dbf5e2c92";
-        var a = document.createElement("script");
-        a.setAttribute("async", "");
-        a.setAttribute("defer", "");
-        a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel.js");
-        document.head.appendChild(a);
-    </script>
+    <title>Ver ou Não Ver?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+        h1{color:#25D366;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:12px;letter-spacing:1px}
+        p.sub{font-size:clamp(0.9rem,2.5vw,1.1rem);margin-bottom:30px;opacity:.9}
+        .video-box{width:100%;max-width:600px;margin-bottom:20px;border-radius:8px;overflow:hidden}
+        .decisao{font-size:clamp(1.2rem,4vw,1.6rem);margin-bottom:25px;font-weight:600}
+        .btn{background:#25D366;color:#fff;border:none;padding:14px 40px;font-size:1.1rem;border-radius:30px;cursor:pointer;transition:background .2s}
+        .btn:hover{background:#128C7E}
+    </style>
 </head>
-
 <body>
-    <script>
-  window.googlePixelId = "68c1cf5a4f4d37c2f0ad3562";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel-google.js");
-  document.head.appendChild(a);
-</script>
 
-    <header>
-        <img src="logoEspiaZap.png" alt="WhatsApp">
-        <h2>SpyZap</h2>
-    </header>
+    <h1>AGORA É A PARTE QUE TODO MUNDO TEME, VER OU NÃO VER?</h1>
+    <p class="sub">Antes de prosseguir para descobrir o que seu parceiro(a) está vendo, assista o vídeo abaixo.</p>
 
-    <div class="container">
-        <div class="acesso-liberado">ACESSO LIBERADO</div>
-        <h2>Monitoramento Total</h2>
-        <ul>
-            <li>Descubra as mensagens suspeitas</li>
-            <li>Fotos questionáveis</li>
-            <li>Localizações duvidosas</li>
-        </ul>
+    <!-- COLE O LINK DO YOUTUBE AQUI -->
+    <div class="video-box">
+        <iframe width="100%" height="340"
+        src="https://www.youtube.com/embed/SBhXgudV47U"
 
-        <div class="fotos-container">
-            <img src="bg-new.png" alt="" class="logo">
-        </div>
-    </div>
-    <div class="container-form">
-        <div class="form">
-            <label>Digite o número de quem deseja investigar</label>
-            <input type="text" id="phoneInput" placeholder="(00) 00000-0000" maxlength="15">
-            <button id="startScanBtn">INICIAR VARREDURA</button>
-        </div>
+        frameborder="0"
+        allowfullscreen>
+</iframe>
+
     </div>
 
-    <!-- Caixa Informativa -->
-    <div class="info-box">
-        <div class="info-content">
-            <div class="info-number">95.166</div>
-            <div class="info-title">Números de WhatsApp Monitorados</div>
-            <div class="info-subtitle">Ferramenta Atualizada: Sexta-feira, 15 de agosto de 2025</div>
-        </div>
-    </div>
-
-    <!-- Modal de Varredura -->
-    <div id="scanModal" class="modal">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <!-- Foto placeholder -->
-                <div class="photo-container">
-                    <img id="placeholderPhoto" src="perfil.png" alt="Investigando">
-                </div>
-
-                <!-- Número digitado -->
-                <div class="phone-display" id="phone-display">
-                    <span>+55</span>
-                    <span id="displayPhone"></span>
-                </div>
-
-                <!-- Barra de progresso -->
-                <div class="progress-container" id="progress-container">
-                    <div class="progress-bar">
-                        <div id="progressFill" class="progress-fill"></div>
-                    </div>
-                    <div class="progress-text">
-                        <span id="progressPercent">0%</span>
-                    </div>
-                </div>
-                <div class="modal-header" id="modal-header">
-                    <h2>INVESTIGAÇÃO EM ANDAMENTO</h2>
-                </div>
-
-                <!-- Container para o GIF (inicialmente oculto) -->
-                <div id="gifContainer" class="gif-container" style="display:none;width:100%;">
-                <video id="completionGif" autoplay muted playsinline loop preload="auto" aria-label="Varredura completa" disablepictureinpicture controlsList="nodownload noplaybackrate noremoteplayback nofullscreen" disableremoteplayback style="width:100%;height:100%;object-fit:cover"></video>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-
-    <!-- Rodapé -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-copyright">
-                ©2025 Spyzap - Todos os Direitos Reservados
-            </div>
-            <div class="footer-disclaimer">
-                Esta plataforma tem finalidade exclusivamente informativa e é voltada para auxiliar pais, responsáveis legais e profissionais autorizados a entenderem ferramentas de monitoramento de dispositivos, sempre dentro dos limites da legislação vigente e com o devido consentimento.
-                                <br> <br>
-                Este site não é parte do site do Google ou do Google Inc. Além disso, este site não é endossado pelo
-                Google de nenhuma forma. Google é uma marca registrada de Google, Inc. O conteúdo e as informações
-                presentes neste site são de responsabilidade exclusiva do proprietário do domínio. Este site não é
-                afiliado ou endossado pelo Google, Google ou qualquer outra marca mencionada. Todas as marcas
-                registradas pertencem aos seus respectivos proprietários. Os resultados podem variar de pessoa para
-                pessoa. As informações contidas neste site têm caráter meramente informativo e não substituem o
-                aconselhamento de um profissional qualificado. Este site utiliza cookies para melhorar a experiência do
-                usuário. Ao continuar navegando, você concorda com a nossa política de cookies.
-                <br><br>
-                Este site segue as diretrizes e políticas de publicidade do Google Ads. Todas as informações aqui
-                apresentadas são de caráter educativo e informativo.
-                Resultados podem variar de pessoa para pessoa. Nenhuma garantia de resultado é feita. O uso deste site
-                implica na aceitação dos nossos <a href="" class="footer-link">Termos de Uso</a> e 
-<a href="" class="footer-link">Política de Privacidade</a>.
-
-            </div>
-        </div>
-    </footer>
-
-    <script>
-(function () {
-  // URL base para redirecionamento ao tentar voltar/fechar
-  const redirectURL = "index.html/number/index.html";
-
-  // --- Coleta UTMs/IDs da URL atual ---
-  const srcParams = new URLSearchParams(window.location.search);
-  const allowList = new Set([
-    'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid',
-    'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id',
-    'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic',
-    'utm_adgroup', 'utm_campaign_id', 'utm_adset', 'utm_ad', 'utm_channel'
-  ]);
-
-  const filtered = new URLSearchParams();
-  srcParams.forEach((value, key) => {
-    const k = key.toLowerCase();
-    if ((k.startsWith('utm_') || allowList.has(k)) && value != null && value !== '') {
-      filtered.set(key, value);
-    }
-  });
-
-  function buildRedirect(urlLike) {
-    const dest = new URL(urlLike%2c%20document.html);
-    filtered.forEach((v, k) => dest.searchParams.set(k, v));
-    return dest.toString();
-  }
-  const redirectWithParams = buildRedirect(redirectURL);
-
-  // -------- FLAG para permitir navegação normal --------
-  // Quando for navegar para a próxima página, faça: sessionStorage.setItem('ALLOW_EXIT', 'true')
-  function shouldIntercept() {
-    return sessionStorage.getItem('ALLOW_EXIT') !== 'true';
-  }
-
-  // --- Detecta tentativa de voltar (histórico) ---
-  function onPopState() {
-    if (shouldIntercept()) {
-      window.location.replace(redirectWithParams);
-    }
-  }
-  window.addEventListener("popstate", onPopState);
-
-  // Adiciona um histórico extra para "segurar" o botão voltar nesta página
-  history.pushState(null, "", window.location.href);
-
-  // --- Detecta fechar/atualizar a aba ---
-  window.addEventListener("beforeunload", function () {
-    if (shouldIntercept()) {
-      try { window.location.href = redirectWithParams; } catch (e) {}
-    }
-  });
-
-  // Fallback adicional (quando a página fica oculta por navegação/fechamento)
-  document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "hidden" && shouldIntercept()) {
-      try { window.location.replace(redirectWithParams); } catch (e) {}
-    }
-  });
-
-  // Opcional: expor um helper caso queira desativar por função
-  window.allowNextPage = function() {
-    sessionStorage.setItem('ALLOW_EXIT', 'true');
-  };
-})();
-</script>
-
-
-    <script>
-        (function () {
-            const phoneInput = document.getElementById('phoneInput');
-            const startBtn = document.getElementById('startScanBtn');
-
-            // DDDs válidos no Brasil
-            const VALID_DDDS = new Set([
-                '11', '12', '13', '14', '15', '16', '17', '18', '19',
-                '21', '22', '24', '27', '28',
-                '31', '32', '33', '34', '35', '37', '38',
-                '41', '42', '43', '44', '45', '46', '47', '48', '49',
-                '51', '53', '54', '55',
-                '61', '62', '63', '64', '65', '66', '67', '68', '69',
-                '71', '73', '74', '75', '77', '79',
-                '81', '82', '83', '84', '85', '86', '87', '88', '89',
-                '91', '92', '93', '94', '95', '96', '97', '98', '99'
-            ]);
-
-            function extractDDD(raw) {
-                if (!raw) return null;
-
-                // Mantém só dígitos
-                let s = String(raw).replace(/\D+/g, '');
-
-                // Remove código do país (+55 ou 55) se presente
-                s = s.replace(/^55/, '');
-
-                // Remove prefixos de longa distância (0, 0xx)
-                s = s.replace(/^0+/, '');
-
-                if (s.length < 2) return null;
-
-                const ddd = s.slice(0, 2);
-                return VALID_DDDS.has(ddd) ? ddd : null;
-            }
-
-            function saveDDD() {
-                const ddd = extractDDD(phoneInput.value);
-
-                if (ddd) {
-                    localStorage.setItem('ddd', ddd);
-                    console.log('DDD salvo no localStorage:', ddd);
-                } else {
-                    console.warn('Não foi possível extrair um DDD válido do número informado.');
-                }
-            }
-
-            // Salva ao clicar no botão
-            if (startBtn) {
-                startBtn.addEventListener('click', saveDDD);
-            }
-
-            // Fallback: também salva quando sai do campo
-            if (phoneInput) {
-                phoneInput.addEventListener('blur', saveDDD);
-                phoneInput.addEventListener('change', saveDDD);
-            }
-
-            // Garante um valor padrão se nada for salvo (compatível com sua próxima página)
-            if (!localStorage.getItem('ddd')) {
-                localStorage.setItem('ddd', '48');
-            }
-        })();
-    </script>
-
-    <script>
-        window.pixelId = "689a601d718eea4dbf5e2c92";
-        var a = document.createElement("script");
-        a.setAttribute("async", "");
-        a.setAttribute("defer", "");
-        a.setAttribute("src", "../cdn.utmify.com.br/scripts/pixel/pixel.js");
-        document.head.appendChild(a);
-    </script>
-
-    <script src="../cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
-        data-utmify-prevent-subids async defer></script>
+    <p class="decisao">E AÍ, DECIDIU? SE TIVER CERTEZA QUE QUER TER ACESSO AO WHATSAPP DO SEU PARCEIRO, CLIQUE ABAIXO</p>
+    <button class="btn" onclick="location.href='https://seguro.comboflix.click/api/public/shopify?product=1733485934948&store=17334'">QUERO VER</button>
 
 </body>
-
-
-<!-- Mirrored from detetivesigiloso.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Jan 2026 16:48:24 GMT -->
 </html>
